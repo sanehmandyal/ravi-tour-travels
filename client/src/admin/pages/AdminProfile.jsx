@@ -175,10 +175,10 @@ export default function AdminProfile() {
   };
 
   const handleResetDefaultPassword = () => {
-    if (window.confirm('Reset admin password back to default "RaviTravels@2026"?')) {
+    if (window.confirm('Reset admin password back to default?')) {
       localStorage.removeItem('rtt_admin_custom_password');
       setCustomPasswordSet(false);
-      toast.success('Password reset back to default: RaviTravels@2026');
+      toast.success('Password reset back to default');
     }
   };
 
@@ -186,7 +186,7 @@ export default function AdminProfile() {
     <div className="space-y-8 max-w-4xl">
       <div>
         <h1 className="text-2xl font-black text-navy-900 tracking-tight">Admin Profile & Security</h1>
-        <p className="text-slate-500 text-xs mt-1">Manage your administrator avatar, credentials, and settings.</p>
+        <p className="text-slate-500 text-xs mt-1">Manage your administrator avatar, password, and settings.</p>
       </div>
 
       {/* Account Info Card with Avatar Upload */}
@@ -361,7 +361,7 @@ export default function AdminProfile() {
           ) : (
             <div className="mb-4 p-3 rounded-2xl bg-amber-50/80 border border-amber-200 text-xs text-amber-800 flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-amber-600 shrink-0" />
-              <span>Default password active (<code className="font-bold">RaviTravels@2026</code>). You can change it below.</span>
+              <span>Default system password is active. You can set a custom password below at any time.</span>
             </div>
           )}
 
