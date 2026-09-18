@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-let rawApiUrl = (import.meta.env.VITE_API_URL || '/api').trim().replace(/\/+$/, '');
+const defaultBaseUrl =
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.PROD ? 'https://ravi-tour-travels-api.onrender.com' : '/api');
+let rawApiUrl = defaultBaseUrl.trim().replace(/\/+$/, '');
 const API_URL = rawApiUrl.endsWith('/api') ? rawApiUrl : `${rawApiUrl}/api`;
 
 const axiosClient = axios.create({
