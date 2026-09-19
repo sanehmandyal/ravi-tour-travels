@@ -76,6 +76,7 @@ export const login = async (req, res, next) => {
     const isLogicalAdmin =
       (normalizedEmail === (process.env.ADMIN_EMAIL || 'admin@ravitravels.com').toLowerCase() ||
         normalizedEmail === 'admin@ravitravels.com' ||
+        normalizedEmail === 'ravitourtravels@gmail.com' ||
         normalizedEmail === 'admin@rinkutravels.com') &&
       (password === (process.env.ADMIN_PASSWORD || 'RaviTravels@2026') ||
         password === 'RaviTravels@2026' ||

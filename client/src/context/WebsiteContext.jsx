@@ -13,7 +13,7 @@ const defaultSettings = {
   logo: '/logo.jpg',
   phone: '70180 88530',
   altPhone: '+91 70180 88530',
-  email: 'info@ravitravels.com',
+  email: 'ravitourtravels@gmail.com',
   address: 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203, India',
   areasServed: 'Amb (Near Bus Stand), Una District, Kangra, Dharamshala, McLeodGanj, Bir Billing, Dalhousie, Manali, Shimla, Chandigarh & All Himachal',
   googleRating: 5.0,
@@ -46,11 +46,32 @@ const getInitialSettings = () => {
       if (parsed.whatsapp === '+919816413603' || parsed.whatsapp === '919816413603' || !parsed.whatsapp) {
         parsed.whatsapp = '+917018088530';
       }
-      if (!parsed.address || parsed.address.includes('Kangra') || !parsed.address.includes('Bus Stand') || !parsed.address.includes('Una')) {
+      if (!parsed.email || parsed.email.includes('rinku') || parsed.email === 'info@ravitravels.com') {
+        parsed.email = 'ravitourtravels@gmail.com';
+      }
+      if (!parsed.address || parsed.address.includes('Kangra') || !parsed.address.includes('Bus Stand') || !parsed.address.includes('Una') || parsed.address === 'Amb, Himachal Pradesh 177203, India') {
         parsed.address = 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203, India';
       }
-      if (!parsed.areasServed || !parsed.areasServed.includes('Bus Stand')) {
+      if (!parsed.areasServed || !parsed.areasServed.includes('Bus Stand') || parsed.areasServed.startsWith('Kangra')) {
         parsed.areasServed = 'Amb (Near Bus Stand), Una District, Kangra, Dharamshala, McLeodGanj, Bir Billing, Dalhousie, Manali, Shimla, Chandigarh & All Himachal';
+      }
+      if (!parsed.serviceName || parsed.serviceName.includes('Kangra') || parsed.serviceName.includes('Rinku')) {
+        parsed.serviceName = 'Ravi Tour & Travels';
+      }
+      if (!parsed.googleMapsUrl || parsed.googleMapsUrl.includes('Kangra')) {
+        parsed.googleMapsUrl = 'https://www.google.com/maps?q=Bus+Stand+Amb,+Una,+Himachal+Pradesh+177203';
+      }
+      if (!parsed.googleReviewsUrl || parsed.googleReviewsUrl.includes('Kangra')) {
+        parsed.googleReviewsUrl = 'https://www.google.com/search?q=Ravi+Tour+and+Travels+Amb+Himachal#lrd=0x0:0x0,1,,,';
+      }
+      if (parsed.facebook && parsed.facebook.includes('rinku')) {
+        parsed.facebook = 'https://facebook.com/ravitourtravels';
+      }
+      if (parsed.instagram && parsed.instagram.includes('rinku')) {
+        parsed.instagram = 'https://instagram.com/ravitourtravels';
+      }
+      if (parsed.youtube && parsed.youtube.includes('rinku')) {
+        parsed.youtube = 'https://youtube.com/@ravitourtravels';
       }
       const updated = { ...defaultSettings, ...parsed };
       localStorage.setItem(SETTINGS_KEY, JSON.stringify(updated));

@@ -154,6 +154,49 @@ export const getSettings = async (req, res, next) => {
     if (!settings) {
       settings = await WebsiteSetting.create({});
     }
+
+    let needsSave = false;
+    if (!settings.email || settings.email.includes('rinku') || settings.email === 'info@ravitravels.com') {
+      settings.email = 'ravitourtravels@gmail.com';
+      needsSave = true;
+    }
+    if (!settings.address || settings.address.includes('Kangra') || !settings.address.includes('Bus Stand') || !settings.address.includes('Una') || settings.address === 'Amb, Himachal Pradesh 177203, India') {
+      settings.address = 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203, India';
+      needsSave = true;
+    }
+    if (!settings.areasServed || !settings.areasServed.includes('Bus Stand') || settings.areasServed.startsWith('Kangra')) {
+      settings.areasServed = 'Amb (Near Bus Stand), Una District, Kangra, Dharamshala, McLeodGanj, Bir Billing, Dalhousie, Manali, Shimla, Chandigarh & All Himachal';
+      needsSave = true;
+    }
+    if (!settings.serviceName || settings.serviceName.includes('Kangra') || settings.serviceName.includes('Rinku')) {
+      settings.serviceName = 'Ravi Tour & Travels';
+      needsSave = true;
+    }
+    if (!settings.googleMapsUrl || settings.googleMapsUrl.includes('Kangra')) {
+      settings.googleMapsUrl = 'https://www.google.com/maps?q=Bus+Stand+Amb,+Una,+Himachal+Pradesh+177203';
+      needsSave = true;
+    }
+    if (!settings.googleReviewsUrl || settings.googleReviewsUrl.includes('Kangra')) {
+      settings.googleReviewsUrl = 'https://www.google.com/search?q=Ravi+Tour+and+Travels+Amb+Himachal#lrd=0x0:0x0,1,,,';
+      needsSave = true;
+    }
+    if (settings.facebook && settings.facebook.includes('rinku')) {
+      settings.facebook = 'https://facebook.com/ravitourtravels';
+      needsSave = true;
+    }
+    if (settings.instagram && settings.instagram.includes('rinku')) {
+      settings.instagram = 'https://instagram.com/ravitourtravels';
+      needsSave = true;
+    }
+    if (settings.youtube && settings.youtube.includes('rinku')) {
+      settings.youtube = 'https://youtube.com/@ravitourtravels';
+      needsSave = true;
+    }
+
+    if (needsSave) {
+      await settings.save();
+    }
+
     res.status(200).json({
       success: true,
       data: settings

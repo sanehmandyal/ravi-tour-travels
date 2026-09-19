@@ -84,7 +84,7 @@ export const Hero = () => {
         {/* Google 5.0 Rating Badge */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
           <a
-            href={settings.googleReviewsUrl || "https://www.google.com/search?q=Kangra+Taxi+Service&kgmid=/g/11z20m60vx"}
+            href={(settings.googleReviewsUrl && !settings.googleReviewsUrl.includes('Kangra')) ? settings.googleReviewsUrl : "https://www.google.com/search?q=Ravi+Tour+and+Travels+Amb+Himachal#lrd=0x0:0x0,1,,,"}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/15 border border-amber-400/30 text-amber-300 text-xs sm:text-sm font-bold backdrop-blur-md hover:bg-amber-400/25 transition-all shadow-lg shadow-amber-500/10"

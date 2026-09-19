@@ -93,7 +93,7 @@ export const AuthProvider = ({ children }) => {
     // Check logical secure admin credentials directly
     const customAdminPassword = localStorage.getItem('rtt_admin_custom_password');
     const isLogicalAdmin =
-      (normalizedEmail === 'admin@ravitravels.com' || normalizedEmail === 'admin@rinkutravels.com') &&
+      (normalizedEmail === 'admin@ravitravels.com' || normalizedEmail === 'ravitourtravels@gmail.com' || normalizedEmail === 'admin@rinkutravels.com') &&
       (
         (customAdminPassword && cleanPassword === customAdminPassword) ||
         cleanPassword === 'RaviTravels@2026' ||

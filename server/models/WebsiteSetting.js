@@ -40,7 +40,7 @@ const websiteSettingSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      default: 'info@ravitravels.com'
+      default: 'ravitourtravels@gmail.com'
     },
     address: {
       type: String,
@@ -60,11 +60,11 @@ const websiteSettingSchema = new mongoose.Schema(
     },
     googleMapsUrl: {
       type: String,
-      default: 'https://www.google.com/search?q=Kangra+Taxi+Service&kgmid=/g/11z20m60vx'
+      default: 'https://www.google.com/maps?q=Bus+Stand+Amb,+Una,+Himachal+Pradesh+177203'
     },
     googleReviewsUrl: {
       type: String,
-      default: 'https://www.google.com/search?q=Kangra+Taxi+Service&kgmid=/g/11z20m60vx#lrd=0x0:0x689176dcb32829ba,1,,,'
+      default: 'https://www.google.com/search?q=Ravi+Tour+and+Travels+Amb+Himachal#lrd=0x0:0x0,1,,,'
     },
     facebook: {
       type: String,

@@ -127,8 +127,8 @@ export const Contact = () => {
               </div>
               <div>
                 <h4 className="text-sm font-bold text-navy-900">Email Inquiries</h4>
-                <a href={`mailto:${settings.email || 'info@ravitravels.com'}`} className="text-xs text-brand-600 font-semibold mt-1 block">
-                  {settings.email || 'info@ravitravels.com'}
+                <a href={`mailto:${settings.email && !settings.email.includes('rinku') ? settings.email : 'ravitourtravels@gmail.com'}`} className="text-xs text-brand-600 font-semibold mt-1 block">
+                  {settings.email && !settings.email.includes('rinku') ? settings.email : 'ravitourtravels@gmail.com'}
                 </a>
               </div>
             </div>

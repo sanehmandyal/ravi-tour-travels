@@ -22,7 +22,7 @@ export const WebsiteSettings = () => {
     logo: settings.logo || '/logo.jpg',
     phone: settings.phone || '70180 88530',
     altPhone: settings.altPhone || '+91 70180 88530',
-    email: settings.email || 'info@ravitravels.com',
+    email: (settings.email && !settings.email.includes('rinku')) ? settings.email : 'ravitourtravels@gmail.com',
     address: settings.address || 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203, India',
     serviceName: settings.serviceName || 'Ravi Tour & Travels',
     areasServed: settings.areasServed || 'Amb (Near Bus Stand), Una District, Kangra, Dharamshala, McLeodGanj, Bir Billing, Dalhousie, Manali, Shimla, Chandigarh & All Himachal',

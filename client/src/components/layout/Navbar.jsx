@@ -109,7 +109,7 @@ export const Navbar = () => {
           {/* Google Reviews Badge + Admin CTA */}
           <div className="flex items-center gap-3">
             <a
-              href={settings.googleReviewsUrl || "https://www.google.com/search?q=Kangra+Taxi+Service&kgmid=/g/11z20m60vx"}
+              href={(settings.googleReviewsUrl && !settings.googleReviewsUrl.includes('Kangra')) ? settings.googleReviewsUrl : "https://www.google.com/search?q=Ravi+Tour+and+Travels+Amb+Himachal#lrd=0x0:0x0,1,,,"}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 bg-amber-400/15 hover:bg-amber-400/25 text-amber-300 px-2 py-0.5 rounded-full text-[11px] font-bold transition-colors border border-amber-400/30 shrink-0"

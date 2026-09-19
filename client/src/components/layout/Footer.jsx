@@ -85,7 +85,7 @@ export const Footer = () => {
                 </div>
               </div>
               <a
-                href={settings.googleReviewsUrl || "https://www.google.com/search?q=Kangra+Taxi+Service&kgmid=/g/11z20m60vx"}
+                href={(settings.googleReviewsUrl && !settings.googleReviewsUrl.includes('Kangra')) ? settings.googleReviewsUrl : "https://www.google.com/search?q=Ravi+Tour+and+Travels+Amb+Himachal#lrd=0x0:0x0,1,,,"}
                 target="_blank"
                 rel="noreferrer"
                 className="text-xs font-bold text-brand-400 hover:text-white flex items-center gap-1 transition-colors"
@@ -107,7 +107,7 @@ export const Footer = () => {
             {/* Social Icons */}
             <div className="flex items-center gap-3 pt-2">
               <a
-                href={settings.facebook}
+                href={settings.facebook && !settings.facebook.includes('rinku') ? settings.facebook : 'https://facebook.com/ravitourtravels'}
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-xl bg-navy-900 flex items-center justify-center text-slate-400 hover:text-brand-400 hover:bg-navy-800 transition-colors"
@@ -116,7 +116,7 @@ export const Footer = () => {
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href={settings.instagram}
+                href={settings.instagram && !settings.instagram.includes('rinku') ? settings.instagram : 'https://instagram.com/ravitourtravels'}
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-xl bg-navy-900 flex items-center justify-center text-slate-400 hover:text-brand-400 hover:bg-navy-800 transition-colors"
@@ -125,7 +125,7 @@ export const Footer = () => {
                 <Instagram className="w-4 h-4" />
               </a>
               <a
-                href={settings.youtube}
+                href={settings.youtube && !settings.youtube.includes('rinku') ? settings.youtube : 'https://youtube.com/@ravitourtravels'}
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-xl bg-navy-900 flex items-center justify-center text-slate-400 hover:text-brand-400 hover:bg-navy-800 transition-colors"
@@ -164,12 +164,12 @@ export const Footer = () => {
             <h4 className="text-white font-bold text-sm tracking-wider uppercase mb-4">Areas Served</h4>
             <ul className="space-y-2.5 text-sm text-slate-400">
               <li><Link to="/destinations" className="hover:text-white transition-colors">Amb (Near Bus Stand) & Una</Link></li>
+              <li><Link to="/destinations" className="hover:text-white transition-colors">Chintpurni & Jawalamukhi</Link></li>
               <li><Link to="/destinations" className="hover:text-white transition-colors">Kangra & Dharamshala</Link></li>
               <li><Link to="/destinations" className="hover:text-white transition-colors">McLeodGanj & Bhagsunag</Link></li>
               <li><Link to="/destinations" className="hover:text-white transition-colors">Bir Billing (Paragliding)</Link></li>
               <li><Link to="/destinations" className="hover:text-white transition-colors">Dalhousie & Khajjiar</Link></li>
-              <li><Link to="/destinations" className="hover:text-white transition-colors">Manali & Solang Valley</Link></li>
-              <li><Link to="/destinations" className="hover:text-white transition-colors">Shimla & Chandigarh</Link></li>
+              <li><Link to="/destinations" className="hover:text-white transition-colors">Manali & Shimla</Link></li>
             </ul>
           </div>
 
@@ -179,7 +179,7 @@ export const Footer = () => {
             <ul className="space-y-3.5 text-sm text-slate-400">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-1" />
-                <span>{settings.address || 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203'}</span>
+                <span>{settings.address || 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203, India'}</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-amber-400 shrink-0" />
@@ -189,8 +189,8 @@ export const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-brand-400 shrink-0" />
-                <a href={`mailto:${settings.email || 'info@ravitravels.com'}`} className="hover:text-white transition-colors">
-                  {settings.email || 'info@ravitravels.com'}
+                <a href={`mailto:${settings.email && !settings.email.includes('rinku') ? settings.email : 'ravitourtravels@gmail.com'}`} className="hover:text-white transition-colors">
+                  {settings.email && !settings.email.includes('rinku') ? settings.email : 'ravitourtravels@gmail.com'}
                 </a>
               </li>
               <li className="flex items-start gap-3">

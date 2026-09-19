@@ -14,11 +14,32 @@ const sanitizeSettings = (data) => {
   if (s.whatsapp === '+919816413603' || s.whatsapp === '919816413603' || !s.whatsapp) {
     s.whatsapp = '+917018088530';
   }
-  if (!s.address || s.address.includes('Kangra') || !s.address.includes('Bus Stand') || !s.address.includes('Una')) {
+  if (!s.email || s.email.includes('rinku') || s.email === 'info@ravitravels.com') {
+    s.email = 'ravitourtravels@gmail.com';
+  }
+  if (!s.address || s.address.includes('Kangra') || !s.address.includes('Bus Stand') || !s.address.includes('Una') || s.address === 'Amb, Himachal Pradesh 177203, India') {
     s.address = 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203, India';
   }
-  if (!s.areasServed || !s.areasServed.includes('Bus Stand')) {
+  if (!s.areasServed || !s.areasServed.includes('Bus Stand') || s.areasServed.startsWith('Kangra')) {
     s.areasServed = 'Amb (Near Bus Stand), Una District, Kangra, Dharamshala, McLeodGanj, Bir Billing, Dalhousie, Manali, Shimla, Chandigarh & All Himachal';
+  }
+  if (!s.serviceName || s.serviceName.includes('Kangra') || s.serviceName.includes('Rinku')) {
+    s.serviceName = 'Ravi Tour & Travels';
+  }
+  if (!s.googleMapsUrl || s.googleMapsUrl.includes('Kangra')) {
+    s.googleMapsUrl = 'https://www.google.com/maps?q=Bus+Stand+Amb,+Una,+Himachal+Pradesh+177203';
+  }
+  if (!s.googleReviewsUrl || s.googleReviewsUrl.includes('Kangra')) {
+    s.googleReviewsUrl = 'https://www.google.com/search?q=Ravi+Tour+and+Travels+Amb+Himachal#lrd=0x0:0x0,1,,,';
+  }
+  if (s.facebook && s.facebook.includes('rinku')) {
+    s.facebook = 'https://facebook.com/ravitourtravels';
+  }
+  if (s.instagram && s.instagram.includes('rinku')) {
+    s.instagram = 'https://instagram.com/ravitourtravels';
+  }
+  if (s.youtube && s.youtube.includes('rinku')) {
+    s.youtube = 'https://youtube.com/@ravitourtravels';
   }
   return s;
 };

@@ -896,7 +896,7 @@ const seedDB = async () => {
       heroImage: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80',
       phone: '70180 88530',
       altPhone: '+91 70180 88530',
-      email: 'info@ravitravels.com',
+      email: 'ravitourtravels@gmail.com',
       address: 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203, India',
       areasServed: 'Amb (Near Bus Stand), Una District, Kangra, Dharamshala, McLeodGanj, Bir Billing, Dalhousie, Manali, Shimla, Chandigarh & All Himachal',
       googleRating: 5.0,
