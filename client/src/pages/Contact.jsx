@@ -99,7 +99,7 @@ export const Contact = () => {
               <div>
                 <h4 className="text-sm font-bold text-navy-900">Registered Office</h4>
                 <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                  {settings.address || 'Amb, Himachal Pradesh 177203, India'}
+                  {settings.address || 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203, India'}
                 </p>
               </div>
             </div>
@@ -261,7 +261,7 @@ export const Contact = () => {
           <div className="bg-white rounded-3xl p-4 shadow-soft border border-slate-100 overflow-hidden">
             <iframe
               title="Ravi Tour & Travels Office Location"
-              src="https://maps.google.com/maps?q=Kangra,+Himachal+Pradesh&t=&z=13&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?q=Bus+Stand+Amb,+Una,+Himachal+Pradesh+177203&t=&z=14&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="320"
               style={{ border: 0, borderRadius: '1rem' }}

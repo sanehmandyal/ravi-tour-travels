@@ -14,11 +14,11 @@ const defaultSettings = {
   phone: '70180 88530',
   altPhone: '+91 70180 88530',
   email: 'info@ravitravels.com',
-  address: 'Amb, Himachal Pradesh 177203, India',
-  areasServed: 'Amb, Una, Kangra, Dharamshala, McLeodGanj, Bir Billing, Dalhousie, Manali, Shimla, Chandigarh & All Himachal',
+  address: 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203, India',
+  areasServed: 'Amb (Near Bus Stand), Una District, Kangra, Dharamshala, McLeodGanj, Bir Billing, Dalhousie, Manali, Shimla, Chandigarh & All Himachal',
   googleRating: 5.0,
   googleReviewCount: 46,
-  googleMapsUrl: 'https://www.google.com/search?q=Ravi+Tour+and+Travels+Amb+Himachal',
+  googleMapsUrl: 'https://www.google.com/maps?q=Bus+Stand+Amb,+Una,+Himachal+Pradesh+177203',
   googleReviewsUrl: 'https://www.google.com/search?q=Ravi+Tour+and+Travels+Amb+Himachal#lrd=0x0:0x0,1,,,',
   facebook: 'https://facebook.com/ravitourtravels',
   instagram: 'https://instagram.com/ravitourtravels',
@@ -46,8 +46,11 @@ const getInitialSettings = () => {
       if (parsed.whatsapp === '+919816413603' || parsed.whatsapp === '919816413603' || !parsed.whatsapp) {
         parsed.whatsapp = '+917018088530';
       }
-      if (!parsed.address || parsed.address.includes('Kangra')) {
-        parsed.address = 'Amb, Himachal Pradesh 177203, India';
+      if (!parsed.address || parsed.address.includes('Kangra') || !parsed.address.includes('Bus Stand') || !parsed.address.includes('Una')) {
+        parsed.address = 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203, India';
+      }
+      if (!parsed.areasServed || !parsed.areasServed.includes('Bus Stand')) {
+        parsed.areasServed = 'Amb (Near Bus Stand), Una District, Kangra, Dharamshala, McLeodGanj, Bir Billing, Dalhousie, Manali, Shimla, Chandigarh & All Himachal';
       }
       const updated = { ...defaultSettings, ...parsed };
       localStorage.setItem(SETTINGS_KEY, JSON.stringify(updated));

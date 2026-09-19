@@ -21,9 +21,13 @@ import { processDeviceImage } from '../../utils/imageUpload';
 export default function AdminProfile() {
   const { user, updateUser } = useAuth();
   const [profileData, setProfileData] = useState(() => {
-    let savedLoc = 'Amb, Himachal Pradesh';
+    let savedLoc = 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203';
     try {
       const u = JSON.parse(localStorage.getItem('rtt_user') || '{}');
+      if (u.location && !u.location.includes('Bus Stand')) {
+        u.location = 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203';
+        localStorage.setItem('rtt_user', JSON.stringify(u));
+      }
       if (u.location) savedLoc = u.location;
     } catch (e) {}
     return {
@@ -239,8 +243,8 @@ export default function AdminProfile() {
           </p>
 
           <p className="text-slate-600 text-xs sm:text-sm flex items-center justify-center sm:justify-start gap-1.5 font-medium">
-            <MapPin className="w-4 h-4 text-rose-500" />
-            {profileData.location || 'Amb, Himachal Pradesh'}
+            <MapPin className="w-4 h-4 text-rose-500 shrink-0" />
+            {profileData.location || 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203'}
           </p>
 
           {/* Avatar Action Buttons */}
@@ -317,7 +321,7 @@ export default function AdminProfile() {
                 name="location"
                 value={profileData.location}
                 onChange={handleProfileChange}
-                placeholder="Amb, Himachal Pradesh"
+                placeholder="Near Bus Stand, Amb, Una, Himachal Pradesh 177203"
                 className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-brand-500 text-sm font-medium"
               />
             </div>

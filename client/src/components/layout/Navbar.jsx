@@ -102,7 +102,7 @@ export const Navbar = () => {
             </a>
             <span className="text-navy-700 hidden sm:inline">|</span>
             <span className="text-[11px] text-slate-300 font-medium hidden sm:inline">
-              Himachal Tours & Luxury Cabs (24/7 Helpline)
+              Himachal Tours & Luxury Cabs • Amb Bus Stand, Una (24/7 Helpline)
             </span>
           </div>
 

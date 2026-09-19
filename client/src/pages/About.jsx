@@ -74,10 +74,10 @@ export const About = () => {
             </h2>
             <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
               <p>
-                Headquartered in Amb, Himachal Pradesh, <strong>Ravi Tour & Travels</strong> was founded with a dedicated mission: to provide the safest, most reliable chauffeur-driven cabs and tour journeys across Himachal and North India.
+                Headquartered near the Bus Stand in Amb, Una District, Himachal Pradesh (177203), <strong>Ravi Tour & Travels</strong> was founded with a dedicated mission: to provide the safest, most reliable chauffeur-driven cabs and tour journeys across Himachal and North India.
               </p>
               <p>
-                Backed by 46 verified 5.0★ Google reviews, we serve travelers across Amb, Una, Kangra, Dharamshala, McLeodGanj, Bir Billing, Dalhousie, Manali, and Shimla.
+                Backed by 46 verified 5.0★ Google reviews, we serve travelers across Amb (Bus Stand & Railway Hub), Una, Kangra, Dharamshala, McLeodGanj, Bir Billing, Dalhousie, Manali, and Shimla.
               </p>
               <p>
                 Our fleet of modern, sanitized Innova Crysta, Ertiga, Dzire sedans, and Tempo Travellers are manned by polite, police-verified mountain chauffeurs who know every curve, scenic viewpoint, and local gem.

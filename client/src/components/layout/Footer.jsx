@@ -163,7 +163,7 @@ export const Footer = () => {
           <div>
             <h4 className="text-white font-bold text-sm tracking-wider uppercase mb-4">Areas Served</h4>
             <ul className="space-y-2.5 text-sm text-slate-400">
-              <li><Link to="/destinations" className="hover:text-white transition-colors">Amb & Una District</Link></li>
+              <li><Link to="/destinations" className="hover:text-white transition-colors">Amb (Near Bus Stand) & Una</Link></li>
               <li><Link to="/destinations" className="hover:text-white transition-colors">Kangra & Dharamshala</Link></li>
               <li><Link to="/destinations" className="hover:text-white transition-colors">McLeodGanj & Bhagsunag</Link></li>
               <li><Link to="/destinations" className="hover:text-white transition-colors">Bir Billing (Paragliding)</Link></li>
@@ -179,7 +179,7 @@ export const Footer = () => {
             <ul className="space-y-3.5 text-sm text-slate-400">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-1" />
-                <span>{settings.address || 'Amb, Himachal Pradesh 177203'}</span>
+                <span>{settings.address || 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203'}</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-amber-400 shrink-0" />

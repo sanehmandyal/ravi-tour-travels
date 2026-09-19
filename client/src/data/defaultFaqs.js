@@ -9,7 +9,7 @@ export const defaultFaqs = [
   {
     _id: 'faq-2',
     question: 'Which areas and airports do you cover for pickups?',
-    answer: 'We provide door-to-door cab pickups and drops across all of Himachal Pradesh and neighboring states. Major pickup hubs include Amb Andaura Railway Station (AADR), Una, Kangra / Gaggal Airport (DHM), Pathankot, Chandigarh Airport (IXC), and New Delhi.',
+    answer: 'We provide door-to-door cab pickups and drops across all of Himachal Pradesh and neighboring states. Major pickup hubs include Amb Bus Stand, Amb Andaura Railway Station (AADR), Una, Kangra / Gaggal Airport (DHM), Pathankot, Chandigarh Airport (IXC), and New Delhi.',
     category: 'Transportation',
     order: 2
   },

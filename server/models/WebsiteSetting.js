@@ -44,11 +44,11 @@ const websiteSettingSchema = new mongoose.Schema(
     },
     address: {
       type: String,
-      default: 'Amb, Himachal Pradesh 177203, India'
+      default: 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203, India'
     },
     areasServed: {
       type: String,
-      default: 'Amb, Una, Kangra, Dharamshala, McLeodGanj, Bir Billing, Dalhousie, Manali, Shimla, Chandigarh & All Himachal'
+      default: 'Amb (Near Bus Stand), Una District, Kangra, Dharamshala, McLeodGanj, Bir Billing, Dalhousie, Manali, Shimla, Chandigarh & All Himachal'
     },
     googleRating: {
       type: Number,

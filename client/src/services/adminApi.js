@@ -14,8 +14,11 @@ const sanitizeSettings = (data) => {
   if (s.whatsapp === '+919816413603' || s.whatsapp === '919816413603' || !s.whatsapp) {
     s.whatsapp = '+917018088530';
   }
-  if (!s.address || s.address.includes('Kangra')) {
-    s.address = 'Amb, Himachal Pradesh 177203, India';
+  if (!s.address || s.address.includes('Kangra') || !s.address.includes('Bus Stand') || !s.address.includes('Una')) {
+    s.address = 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203, India';
+  }
+  if (!s.areasServed || !s.areasServed.includes('Bus Stand')) {
+    s.areasServed = 'Amb (Near Bus Stand), Una District, Kangra, Dharamshala, McLeodGanj, Bir Billing, Dalhousie, Manali, Shimla, Chandigarh & All Himachal';
   }
   return s;
 };

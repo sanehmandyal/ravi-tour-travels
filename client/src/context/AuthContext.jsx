@@ -65,8 +65,8 @@ export const AuthProvider = ({ children }) => {
               if (parsed.phone === '098164 13603' || !parsed.phone) {
                 parsed.phone = '70180 88530';
               }
-              if (!parsed.location) {
-                parsed.location = 'Amb, Himachal Pradesh';
+              if (!parsed.location || !parsed.location.includes('Bus Stand')) {
+                parsed.location = 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203';
               }
               localStorage.setItem('rtt_user', JSON.stringify(parsed));
               setUser(parsed);
@@ -125,7 +125,7 @@ export const AuthProvider = ({ children }) => {
           email: 'admin@ravitravels.com',
           role: 'superadmin',
           phone: '70180 88530',
-          location: 'Amb, Himachal Pradesh',
+          location: 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203',
           avatar: localStorage.getItem('rtt_admin_avatar') || '',
           isActive: true
         };

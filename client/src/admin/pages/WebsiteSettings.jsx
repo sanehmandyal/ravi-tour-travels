@@ -23,13 +23,13 @@ export const WebsiteSettings = () => {
     phone: settings.phone || '70180 88530',
     altPhone: settings.altPhone || '+91 70180 88530',
     email: settings.email || 'info@ravitravels.com',
-    address: settings.address || 'Amb, Himachal Pradesh 177203, India',
+    address: settings.address || 'Near Bus Stand, Amb, Una, Himachal Pradesh 177203, India',
     serviceName: settings.serviceName || 'Ravi Tour & Travels',
-    areasServed: settings.areasServed || 'Amb, Una, Kangra, Dharamshala, McLeodGanj, Bir Billing, Dalhousie, Manali, Shimla, Chandigarh & All Himachal',
+    areasServed: settings.areasServed || 'Amb (Near Bus Stand), Una District, Kangra, Dharamshala, McLeodGanj, Bir Billing, Dalhousie, Manali, Shimla, Chandigarh & All Himachal',
     googleRating: settings.googleRating || 5.0,
     googleReviewCount: settings.googleReviewCount || 46,
     googleReviewsUrl: settings.googleReviewsUrl || 'https://www.google.com/search?q=Ravi+Tour+and+Travels+Amb+Himachal#lrd=0x0:0x0,1,,,',
-    googleMapsUrl: settings.googleMapsUrl || 'https://www.google.com/search?q=Ravi+Tour+and+Travels+Amb+Himachal',
+    googleMapsUrl: settings.googleMapsUrl || 'https://www.google.com/maps?q=Bus+Stand+Amb,+Una,+Himachal+Pradesh+177203',
     facebook: settings.facebook || 'https://facebook.com/ravitourtravels',
     instagram: settings.instagram || 'https://instagram.com/ravitourtravels',
     youtube: settings.youtube || 'https://youtube.com/@ravitourtravels',
@@ -278,6 +278,7 @@ export const WebsiteSettings = () => {
                 name="address"
                 value={form.address}
                 onChange={handleChange}
+                placeholder="e.g. Near Bus Stand, Amb, Una, Himachal Pradesh 177203, India"
                 className="w-full text-sm rounded-xl border border-slate-200 px-3.5 py-2.5 focus:outline-none focus:border-brand-500"
               />
             </div>
