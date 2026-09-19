@@ -16,7 +16,8 @@ import {
   CheckCircle2,
   PhoneCall,
   Sparkles,
-  RefreshCw
+  RefreshCw,
+  Star
 } from 'lucide-react';
 import {
   AreaChart,
@@ -241,6 +242,12 @@ export const Dashboard = () => {
             className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-bold shadow-xs transition-all"
           >
             <Camera className="w-4 h-4" /> Gallery
+          </button>
+          <button
+            onClick={() => navigate('/admin/reviews')}
+            className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 text-xs font-bold shadow-xs transition-all"
+          >
+            <Star className="w-4 h-4 text-amber-500 fill-amber-400" /> Traveler Reviews (Delete)
           </button>
         </div>
       </div>

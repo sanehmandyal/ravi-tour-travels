@@ -88,6 +88,7 @@ export default function AppRoutes() {
         <Route path="blogs/:id/edit" element={<BlogForm />} />
 
         <Route path="gallery" element={<AdminGallery />} />
+        <Route path="reviews" element={<AdminTestimonials />} />
         <Route path="testimonials" element={<AdminTestimonials />} />
         <Route path="inquiries" element={<AdminInquiries />} />
         <Route path="faqs" element={<AdminFAQs />} />

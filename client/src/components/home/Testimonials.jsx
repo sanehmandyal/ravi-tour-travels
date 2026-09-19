@@ -14,8 +14,10 @@ import {
   Car,
   Camera,
   ThumbsUp,
-  ExternalLink
+  ExternalLink,
+  Trash2
 } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 import Button from '../common/Button';
 import { CardSkeleton } from '../common/Skeleton';
 import toast from 'react-hot-toast';
@@ -25,9 +27,25 @@ export const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState('All');
+  const { isAdmin } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
+
+  const handleDeleteReview = async (id, name) => {
+    const reviewer = name || 'this traveler';
+    if (window.confirm(`Admin Action: Permanently delete the review by "${reviewer}"?`)) {
+      try {
+        const res = await testimonialApi.delete(id);
+        if (res.success) {
+          toast.success(`Review by "${reviewer}" deleted`);
+          setTestimonials((prev) => prev.filter((t) => t._id !== id));
+        }
+      } catch (err) {
+        toast.error(err.message || 'Failed to delete review');
+      }
+    }
+  };
 
   // New review form state
   const [formData, setFormData] = useState({
@@ -305,11 +323,23 @@ export const Testimonials = () => {
                     </div>
                   </div>
 
-                  {t.packageTitle && (
-                    <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-semibold text-slate-400 bg-slate-50 px-2 py-0.5 rounded-md">
-                      <Car className="w-3 h-3" /> {t.packageTitle}
-                    </span>
-                  )}
+                  <div className="flex items-center gap-2">
+                    {t.packageTitle && (
+                      <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-semibold text-slate-400 bg-slate-50 px-2 py-0.5 rounded-md">
+                        <Car className="w-3 h-3" /> {t.packageTitle}
+                      </span>
+                    )}
+
+                    {isAdmin && (
+                      <button
+                        onClick={() => handleDeleteReview(t._id, t.customerName)}
+                        title="Delete Review (Admin only)"
+                        className="inline-flex items-center gap-1 text-[11px] font-bold text-rose-600 hover:text-white hover:bg-rose-600 border border-rose-200 px-2.5 py-1 rounded-xl transition-colors shadow-xs"
+                      >
+                        <Trash2 className="w-3 h-3" /> Delete
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
