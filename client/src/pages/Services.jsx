@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import Button from '../components/common/Button';
 import Loader from '../components/common/Loader';
+import { getExactCarImage } from '../services/carApi';
 
 export const Services = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ export const Services = () => {
       seatingCapacity: '6 + 1 Seats',
       luggageCapacity: '4 Large Bags',
       fuelType: 'Diesel',
-      image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Innova_Crysta_2.4_Z_front_right.jpg?width=800',
       features: [
         'Dual AC & Climate Control',
         'Roof Carrier for Extra Luggage',
@@ -53,7 +54,7 @@ export const Services = () => {
       seatingCapacity: '6 + 1 Seats',
       luggageCapacity: '4 Large Bags',
       fuelType: 'Hybrid / Petrol',
-      image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/2023_Toyota_Kijang_Innova_Zenix_2.0_Q_Hybrid_Modellista_(front),_West_Surabaya.jpg?width=800',
       features: [
         'Ottoman Recliner Captain Seats',
         'Dual Zone Chilled Climate Control',
@@ -69,7 +70,7 @@ export const Services = () => {
       seatingCapacity: '5 + 1 Seats',
       luggageCapacity: '3 Large Bags',
       fuelType: 'Petrol / Hybrid',
-      image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_Ertiga(2).jpg?width=800',
       features: [
         'Chilled AC with Rear Vents',
         'Comfortable 3-Row Seating',
@@ -85,7 +86,7 @@ export const Services = () => {
       seatingCapacity: '4 + 1 Seats',
       luggageCapacity: '2 Large Bags + Handbags',
       fuelType: 'Petrol',
-      image: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_Dzire_VXi_VVT_(front).JPG?width=800',
       features: [
         'AC & Cabin Heating',
         'Deep Boot Space',
@@ -101,7 +102,7 @@ export const Services = () => {
       seatingCapacity: '4 + 1 Seats',
       luggageCapacity: '3 Large Bags',
       fuelType: 'Diesel / Petrol',
-      image: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Etios_1.5_XLS_Sedan_2019.jpg?width=800',
       features: [
         'Extra Legroom & Shoulder Room',
         'Huge 595L Boot Space',
@@ -117,7 +118,7 @@ export const Services = () => {
       seatingCapacity: '4 + 1 Seats',
       luggageCapacity: '2 Medium Bags',
       fuelType: 'Petrol',
-      image: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_-_Alto_800_LXi.JPG?width=800',
       features: [
         'Compact & Nimble on Mountain Roads',
         'Chilled AC & Hill Heater',
@@ -133,7 +134,7 @@ export const Services = () => {
       seatingCapacity: '6 + 1 Seats',
       luggageCapacity: '4 Large Bags',
       fuelType: 'Diesel',
-      image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mahindra_Scorpio.jpg?width=800',
       features: [
         '4x4 High Ground Clearance',
         'Rugged All-Terrain Hill Tires',
@@ -149,7 +150,7 @@ export const Services = () => {
       seatingCapacity: '6 + 1 Seats',
       luggageCapacity: '5 Large Bags',
       fuelType: 'Diesel',
-      image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Fortuner_2.8_GR_Sport_4x4_2022.jpg?width=800',
       features: [
         '4x4 High-Torque Mountain Engine',
         'Plush Leather Interior',
@@ -165,7 +166,7 @@ export const Services = () => {
       seatingCapacity: '10 + 1 Passengers',
       luggageCapacity: '8 Large Bags',
       fuelType: 'Diesel',
-      image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800',
       features: [
         'Individual Aircraft-Style Bucket Seats',
         'Triple AC with Personalized Vents',
@@ -181,7 +182,7 @@ export const Services = () => {
       seatingCapacity: '12 + 1 Passengers',
       luggageCapacity: 'Rear Boot + Heavy Roof Carrier',
       fuelType: 'Diesel',
-      image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller,_Leh-Manali_Highway.jpg?width=800',
       features: [
         '1x1 & 2x1 Reclining Pushback Seats',
         'Individual AC Vents & Reading Lights',
@@ -197,7 +198,7 @@ export const Services = () => {
       seatingCapacity: '17 + 1 Passengers',
       luggageCapacity: 'Extra Heavy Overhead Carrier',
       fuelType: 'Diesel',
-      image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800',
       features: [
         'Wide Reclining Luxury Seats',
         'Dual High-Capacity AC Units',
@@ -213,7 +214,7 @@ export const Services = () => {
       seatingCapacity: '26 + 1 Passengers',
       luggageCapacity: 'Massive Roof Carrier + Rear Space',
       fuelType: 'Diesel',
-      image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller,_Leh-Manali_Highway.jpg?width=800',
       features: [
         '2x2 Pushback Maharaja Seats',
         'Twin High-Powered Cooling Units',
@@ -439,11 +440,12 @@ export const Services = () => {
                   {/* Car Image with Category and Availability */}
                   <div className="relative h-44 bg-slate-100 overflow-hidden">
                     <img
-                      src={car.image || 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80'}
+                      src={car.image && !car.image.includes('images.unsplash.com') ? car.image : getExactCarImage(car.name)}
                       alt={car.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       onError={(e) => {
-                        e.target.src = 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80';
+                        e.target.onerror = null;
+                        e.target.src = getExactCarImage(car.name);
                       }}
                     />
                     <div className="absolute top-2.5 left-2.5">

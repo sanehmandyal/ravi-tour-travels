@@ -1,5 +1,56 @@
 import Car from '../models/Car.js';
 
+const getExactCarImage = (name = '') => {
+  const n = String(name).toLowerCase();
+  if (n.includes('hycross') || n.includes('zenix')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/2023_Toyota_Kijang_Innova_Zenix_2.0_Q_Hybrid_Modellista_(front),_West_Surabaya.jpg?width=800';
+  }
+  if (n.includes('crysta') || (n.includes('innova') && !n.includes('hycross'))) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Innova_Crysta_2.4_Z_front_right.jpg?width=800';
+  }
+  if (n.includes('ertiga')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_Ertiga(2).jpg?width=800';
+  }
+  if (n.includes('dzire') || n.includes('swift')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_Dzire_VXi_VVT_(front).JPG?width=800';
+  }
+  if (n.includes('etios')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Etios_1.5_XLS_Sedan_2019.jpg?width=800';
+  }
+  if (n.includes('alto')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_-_Alto_800_LXi.JPG?width=800';
+  }
+  if (n.includes('wagonr') || n.includes('wagon r')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/2018_Suzuki_Karimun_Wagon_R_GL_(front).jpg?width=800';
+  }
+  if (n.includes('scorpio')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Mahindra_Scorpio.jpg?width=800';
+  }
+  if (n.includes('fortuner')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Fortuner_2.8_GR_Sport_4x4_2022.jpg?width=800';
+  }
+  if (n.includes('urbania')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800';
+  }
+  if (n.includes('tempo') || n.includes('traveller')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller,_Leh-Manali_Highway.jpg?width=800';
+  }
+  return 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Innova_Crysta_2.4_Z_front_right.jpg?width=800';
+};
+
+const normalizeCar = (car) => {
+  if (!car) return car;
+  const doc = car.toObject ? car.toObject() : { ...car };
+  const isGeneric = !doc.image || 
+    doc.image.includes('images.unsplash.com') || 
+    doc.image.includes('2018_Maruti_Suzuki_Dzire') ||
+    doc.image.includes('2019_Maruti_Suzuki_Wagon');
+  if (isGeneric) {
+    doc.image = getExactCarImage(doc.name);
+  }
+  return doc;
+};
+
 // @desc    Get all cars / fleet models
 // @route   GET /api/cars
 // @access  Public
@@ -15,10 +66,11 @@ export const getCars = async (req, res, next) => {
     }
 
     const cars = await Car.find(filter).sort({ order: 1, createdAt: -1 });
+    const normalizedCars = cars.map(normalizeCar);
     res.status(200).json({
       success: true,
-      count: cars.length,
-      data: cars
+      count: normalizedCars.length,
+      data: normalizedCars
     });
   } catch (error) {
     next(error);
@@ -36,7 +88,7 @@ export const getCarById = async (req, res, next) => {
     }
     res.status(200).json({
       success: true,
-      data: car
+      data: normalizeCar(car)
     });
   } catch (error) {
     next(error);

@@ -57,7 +57,7 @@ export const defaultCars = [
     seatingCapacity: '4 + 1 Chauffeur',
     luggageCapacity: '2 Large + 2 Hand Bags',
     fuelType: 'Petrol',
-    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/2018_Maruti_Suzuki_Dzire_VXi_front_view.jpg?width=800',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_Dzire_VXi_VVT_(front).JPG?width=800',
     features: [
       'Effective Auto Climate Control',
       'Deep 378L Boot Trunk Capacity',
@@ -91,7 +91,7 @@ export const defaultCars = [
     seatingCapacity: '4 + 1 Chauffeur',
     luggageCapacity: '2 Medium Bags',
     fuelType: 'Petrol',
-    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/2019_Maruti_Suzuki_Wagon_R_1.2_ZXi.jpg?width=800',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_-_Alto_800_LXi.JPG?width=800',
     features: [
       'Ultra Agile in Tight Mountain Bends',
       'Effective Chilled AC & Hill Heater',

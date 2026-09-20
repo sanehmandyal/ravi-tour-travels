@@ -3,20 +3,55 @@ import { defaultCars } from '../data/defaultCars';
 
 const STORAGE_KEY = 'rtt_custom_cars';
 
+export const getExactCarImage = (name = '') => {
+  const n = String(name).toLowerCase();
+  if (n.includes('hycross') || n.includes('zenix')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/2023_Toyota_Kijang_Innova_Zenix_2.0_Q_Hybrid_Modellista_(front),_West_Surabaya.jpg?width=800';
+  }
+  if (n.includes('crysta') || (n.includes('innova') && !n.includes('hycross'))) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Innova_Crysta_2.4_Z_front_right.jpg?width=800';
+  }
+  if (n.includes('ertiga')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_Ertiga(2).jpg?width=800';
+  }
+  if (n.includes('dzire') || n.includes('swift')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_Dzire_VXi_VVT_(front).JPG?width=800';
+  }
+  if (n.includes('etios')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Etios_1.5_XLS_Sedan_2019.jpg?width=800';
+  }
+  if (n.includes('alto')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_-_Alto_800_LXi.JPG?width=800';
+  }
+  if (n.includes('wagonr') || n.includes('wagon r')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/2018_Suzuki_Karimun_Wagon_R_GL_(front).jpg?width=800';
+  }
+  if (n.includes('scorpio')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Mahindra_Scorpio.jpg?width=800';
+  }
+  if (n.includes('fortuner')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Fortuner_2.8_GR_Sport_4x4_2022.jpg?width=800';
+  }
+  if (n.includes('urbania')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800';
+  }
+  if (n.includes('tempo') || n.includes('traveller')) {
+    return 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller,_Leh-Manali_Highway.jpg?width=800';
+  }
+  return 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Innova_Crysta_2.4_Z_front_right.jpg?width=800';
+};
+
 const enrichCarWithExactImage = (car) => {
   if (!car) return car;
-  const match = defaultCars.find(
-    dc => dc._id === car._id || (dc.name && car.name && dc.name.toLowerCase().includes(car.name.toLowerCase().split(' ')[0]))
-  );
-  if (match) {
-    // If the car image is missing or is an old unsplash generic stock photo, replace with exact authentic photo
-    const isOldGenericImage = !car.image || car.image.includes('images.unsplash.com');
-    return {
-      ...car,
-      image: isOldGenericImage ? match.image : car.image
-    };
-  }
-  return car;
+  const exact = getExactCarImage(car.name);
+  const isOldGenericImage = !car.image || 
+    car.image.includes('images.unsplash.com') || 
+    car.image.includes('2018_Maruti_Suzuki_Dzire') ||
+    car.image.includes('2019_Maruti_Suzuki_Wagon');
+  return {
+    ...car,
+    image: isOldGenericImage ? exact : car.image
+  };
 };
 
 const getLocalCars = () => {

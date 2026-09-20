@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { destinationApi } from '../services/destinationApi';
+import { destinationApi, getExactDestinationImages } from '../services/destinationApi';
 import { formatCurrency } from '../utils/formatCurrency';
 import { Search, MapPin, ArrowRight, Filter, Compass, SlidersHorizontal } from 'lucide-react';
 import { CardSkeleton } from '../components/common/Skeleton';
@@ -157,24 +157,27 @@ export const Destinations = () => {
         ) : (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {destinations.map((dest) => (
-                <Link
-                  key={dest._id}
-                  to={`/destinations/${dest.slug}`}
-                  className="group relative bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col hover:-translate-y-1"
-                >
-                  <div className="relative h-64 w-full overflow-hidden bg-slate-200">
-                    <img
-                      src={dest.heroImage || dest.featuredImage || (dest.images && dest.images[0]) || 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80'}
-                      alt={dest.name}
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80';
-                      }}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent opacity-75" />
+              {destinations.map((dest) => {
+                const exact = getExactDestinationImages(dest.name, dest.slug);
+                const destImg = dest.heroImage || dest.featuredImage || (dest.images && dest.images[0]) || exact.heroImage;
+                return (
+                  <Link
+                    key={dest._id}
+                    to={`/destinations/${dest.slug}`}
+                    className="group relative bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col hover:-translate-y-1"
+                  >
+                    <div className="relative h-64 w-full overflow-hidden bg-slate-200">
+                      <img
+                        src={destImg}
+                        alt={dest.name}
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = exact.heroImage;
+                        }}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent opacity-75" />
 
                     <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-navy-900 flex items-center gap-1 shadow-sm">
                       <MapPin className="w-3 h-3 text-brand-600" />
@@ -204,8 +207,9 @@ export const Destinations = () => {
                       </span>
                     </div>
                   </div>
-                </Link>
-              ))}
+                  </Link>
+                );
+              })}
             </div>
 
             <Pagination

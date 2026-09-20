@@ -62,7 +62,7 @@ const seedCars = async () => {
       fuelType: 'Petrol',
       ratePerKm: 11,
       rateDaily: 2400,
-      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/2018_Maruti_Suzuki_Dzire_VXi_front_view.jpg?width=800',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_Dzire_VXi_VVT_(front).JPG?width=800',
       features: [
         'AC & Rapid Cabin Heating',
         'Deep Boot Space',

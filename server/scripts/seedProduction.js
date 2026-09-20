@@ -243,9 +243,10 @@ const runSeed = async () => {
       region: 'Himalayas',
       shortDescription: 'Land of Kinner Kailash peak, apple orchards of Sangla, and Chitkul - the legendary last village of India.',
       description: 'Kinnaur is an enchanting tribal wonderland where Tibetan and Hindu traditions intertwine. Stand before the sacred Kinner Kailash peak in Kalpa, wander through apple and walnut orchards along the Baspa river in Sangla, and travel to Chitkul, the last inhabited village on the Indo-Tibetan border.',
-      heroImage: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Chitkul_the_last_village_of_India.jpg?width=1200',
       gallery: [
-        'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Chitkul_the_last_village_of_India.jpg?width=800',
+        'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80'
       ],
       attractions: [
         { title: 'Kinner Kailash View in Kalpa', description: 'Gaze at the sacred 6,050m peak that dramatically changes colors through the day.', image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80' },
@@ -805,7 +806,7 @@ const runSeed = async () => {
       seatingCapacity: '4 + 1 Seats',
       luggageCapacity: '2 Large Bags + Handbags',
       fuelType: 'Petrol',
-      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/2018_Maruti_Suzuki_Dzire_VXi_front_view.jpg?width=800',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_Dzire_VXi_VVT_(front).JPG?width=800',
       features: [
         'AC & Cabin Heating',
         'Deep Boot Space',
@@ -837,7 +838,7 @@ const runSeed = async () => {
       seatingCapacity: '4 + 1 Seats',
       luggageCapacity: '2 Medium Bags',
       fuelType: 'Petrol',
-      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/2019_Maruti_Suzuki_Wagon_R_1.2_ZXi.jpg?width=800',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_-_Alto_800_LXi.JPG?width=800',
       features: [
         'Compact & Nimble on Mountain Roads',
         'Chilled AC & Hill Heater',

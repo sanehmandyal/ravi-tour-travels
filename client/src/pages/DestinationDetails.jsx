@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { destinationApi } from '../services/destinationApi';
+import { destinationApi, getExactDestinationImages } from '../services/destinationApi';
 import { formatCurrency } from '../utils/formatCurrency';
 import {
   MapPin,
@@ -57,16 +57,19 @@ export const DestinationDetails = () => {
     );
   }
 
+  const exact = getExactDestinationImages(destination.name, destination.slug);
+  const heroImg = destination.heroImage || destination.featuredImage || exact.heroImage;
+
   return (
     <div className="bg-slate-50 min-h-screen pb-24">
       {/* Hero Banner */}
       <div className="relative h-[440px] lg:h-[520px] bg-navy-950 overflow-hidden flex items-end">
         <img
-          src={destination.heroImage || 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80'}
+          src={heroImg}
           alt={destination.name}
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80';
+            e.target.src = exact.heroImage;
           }}
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -202,11 +205,11 @@ export const DestinationDetails = () => {
                 {destination.gallery.map((img, idx) => (
                   <div key={idx} className="h-48 rounded-2xl overflow-hidden bg-slate-100 shadow-soft">
                     <img
-                      src={img || 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80'}
+                      src={img && !img.includes('photo-1506744038136-46273834b3fb') ? img : exact.heroImage}
                       alt={`${destination.name} ${idx + 1}`}
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80';
+                        e.target.src = exact.heroImage;
                       }}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                       loading="lazy"

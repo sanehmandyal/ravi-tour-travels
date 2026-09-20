@@ -3,21 +3,155 @@ import { defaultDestinations } from '../data/defaultDestinations';
 
 const STORAGE_KEY = 'rtt_custom_destinations';
 
-const enrichDestinationWithExactImage = (dest) => {
-  if (!dest) return dest;
-  const match = defaultDestinations.find(
-    d => d._id === dest._id || d.slug === dest.slug || (d.name && dest.name && d.name.toLowerCase() === dest.name.toLowerCase())
-  );
-  if (match) {
-    const isOldStock = (url) => !url || url.includes('photo-1507525428034-b723cf961d3e') || url.includes('photo-1506744038136-46273834b3fb');
+export const getExactDestinationImages = (name = '', slug = '') => {
+  const q = `${name} ${slug}`.toLowerCase();
+  if (q.includes('dharamshala') || q.includes('mcleod')) {
     return {
-      ...dest,
-      featuredImage: isOldStock(dest.featuredImage) ? match.featuredImage : (dest.featuredImage || match.featuredImage),
-      heroImage: isOldStock(dest.heroImage) ? match.heroImage : (dest.heroImage || match.heroImage),
-      images: Array.isArray(dest.images) && dest.images.length > 0 && !dest.images.some(isOldStock) ? dest.images : match.images
+      heroImage: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
+      featuredImage: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=1200&q=80'
+      ]
     };
   }
-  return dest;
+  if (q.includes('manali') || q.includes('solang') || q.includes('rohtang')) {
+    return {
+      heroImage: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=80',
+      featuredImage: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1586351012965-861624544334?auto=format&fit=crop&w=1200&q=80'
+      ]
+    };
+  }
+  if (q.includes('dalhousie') || q.includes('khajjiar')) {
+    return {
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=1200',
+      images: [
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=1200',
+        'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=1200&q=80'
+      ]
+    };
+  }
+  if (q.includes('bir') || q.includes('billing')) {
+    return {
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bir-Billing.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bir-Billing.jpg?width=1200',
+      images: [
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Bir-Billing.jpg?width=1200',
+        'https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=1200&q=80'
+      ]
+    };
+  }
+  if (q.includes('shimla') || q.includes('kufri')) {
+    return {
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_Shimla.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_Shimla.jpg?width=1200',
+      images: [
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_Shimla.jpg?width=1200',
+        'https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=1200&q=80'
+      ]
+    };
+  }
+  if (q.includes('spiti') || q.includes('kaza')) {
+    return {
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Key_Monastery,_Himachal_Pradesh.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Key_Monastery,_Himachal_Pradesh.jpg?width=1200',
+      images: [
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Key_Monastery,_Himachal_Pradesh.jpg?width=1200',
+        'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=1200&q=80'
+      ]
+    };
+  }
+  if (q.includes('kasol') || q.includes('manikaran') || q.includes('tosh') || q.includes('parvati')) {
+    return {
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Lake.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Lake.jpg?width=1200',
+      images: [
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Lake.jpg?width=1200',
+        'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=1200&q=80'
+      ]
+    };
+  }
+  if (q.includes('jibhi') || q.includes('tirthan')) {
+    return {
+      heroImage: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
+      featuredImage: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=1200&q=80'
+      ]
+    };
+  }
+  if (q.includes('kinnaur') || q.includes('kalpa') || q.includes('sangla') || q.includes('chitkul')) {
+    return {
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Chitkul_the_last_village_of_India.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Chitkul_the_last_village_of_India.jpg?width=1200',
+      images: [
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Chitkul_the_last_village_of_India.jpg?width=1200',
+        'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80'
+      ]
+    };
+  }
+  if (q.includes('palampur') || q.includes('baijnath')) {
+    return {
+      heroImage: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
+      featuredImage: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=1200&q=80'
+      ]
+    };
+  }
+  if (q.includes('kangra') || q.includes('jawala') || q.includes('chintpurni')) {
+    return {
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=1200',
+      images: [
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=1200',
+        'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80'
+      ]
+    };
+  }
+  if (q.includes('kullu') || q.includes('naggar')) {
+    return {
+      heroImage: 'https://images.unsplash.com/photo-1586351012965-861624544334?auto=format&fit=crop&w=1200&q=80',
+      featuredImage: 'https://images.unsplash.com/photo-1586351012965-861624544334?auto=format&fit=crop&w=1200&q=80',
+      images: [
+        'https://images.unsplash.com/photo-1586351012965-861624544334?auto=format&fit=crop&w=1200&q=80',
+        'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=80'
+      ]
+    };
+  }
+  return {
+    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=1200',
+    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=1200',
+    images: ['https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=1200']
+  };
+};
+
+const enrichDestinationWithExactImage = (dest) => {
+  if (!dest) return dest;
+  const exact = getExactDestinationImages(dest.name, dest.slug);
+  const isGeneric = (url) => !url || 
+    url.includes('photo-1507525428034-b723cf961d3e') || 
+    url.includes('photo-1506744038136-46273834b3fb') ||
+    url.includes('photo-1590766940554-634a7ed41450');
+
+  const heroImage = isGeneric(dest.heroImage) ? exact.heroImage : (dest.heroImage || exact.heroImage);
+  const featuredImage = isGeneric(dest.featuredImage) ? exact.featuredImage : (dest.featuredImage || exact.featuredImage);
+  const images = Array.isArray(dest.images) && dest.images.length > 0 && !dest.images.some(isGeneric)
+    ? dest.images
+    : exact.images;
+
+  return {
+    ...dest,
+    heroImage,
+    featuredImage,
+    images
+  };
 };
 
 const getLocalDestinations = () => {

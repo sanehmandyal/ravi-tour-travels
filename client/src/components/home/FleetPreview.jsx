@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { carApi } from '../../services/carApi';
+import { carApi, getExactCarImage } from '../../services/carApi';
 import {
   Car,
   Users,
@@ -22,7 +22,7 @@ const fallbackFleet = [
     seatingCapacity: '7 + 1 Chauffeur',
     luggageCapacity: '3-4 Large Bags + Rooftop Carrier',
     fuelType: 'Diesel',
-    image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Innova_Crysta_2.4_Z_front_right.jpg?width=800',
     features: [
       'Dual Front & Rear Chill AC',
       'Plush Reclining Captain Seats',
@@ -39,7 +39,7 @@ const fallbackFleet = [
     seatingCapacity: '7 + 1 Chauffeur',
     luggageCapacity: '4 Large Suitcases',
     fuelType: 'Hybrid',
-    image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/2023_Toyota_Kijang_Innova_Zenix_2.0_Q_Hybrid_Modellista_(front),_West_Surabaya.jpg?width=800',
     features: [
       'Panoramic Sunroof & Ambient Light',
       'Ultra Silent Hybrid Powertrain',
@@ -56,7 +56,7 @@ const fallbackFleet = [
     seatingCapacity: '6 + 1 Chauffeur',
     luggageCapacity: '2 Large Bags + Roof Carrier',
     fuelType: 'Petrol / Hybrid',
-    image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_Ertiga(2).jpg?width=800',
     features: [
       'Roof Mounted AC Blower Vents',
       'Modular 3-Row Foldable Seating',
@@ -73,7 +73,7 @@ const fallbackFleet = [
     seatingCapacity: '4 + 1 Chauffeur',
     luggageCapacity: '2 Large + 2 Hand Bags',
     fuelType: 'Petrol',
-    image: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_Dzire_VXi_VVT_(front).JPG?width=800',
     features: [
       'Effective Auto Climate Control',
       'Deep 378L Boot Trunk Capacity',
@@ -90,7 +90,7 @@ const fallbackFleet = [
     seatingCapacity: '6 + 1 Chauffeur',
     luggageCapacity: '3 Large Bags + Heavy Roof Carrier',
     fuelType: 'Diesel',
-    image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mahindra_Scorpio.jpg?width=800',
     features: [
       'Electronic 4x4 Shift-on-Fly Terrain Modes',
       'High Ground Clearance (200mm)',
@@ -107,7 +107,7 @@ const fallbackFleet = [
     seatingCapacity: '3 + 1 Chauffeur',
     luggageCapacity: '2 Medium Bags',
     fuelType: 'Petrol',
-    image: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_-_Alto_800_LXi.JPG?width=800',
     features: [
       'Nimble Steering for Narrow Hill Bends',
       'Punchy Engine on Steep Mountain Climbs',
@@ -124,7 +124,7 @@ const fallbackFleet = [
     seatingCapacity: '10 + 1 Chauffeur',
     luggageCapacity: 'Spacious Dedicated Luggage Boot',
     fuelType: 'Diesel',
-    image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800',
     features: [
       'Individual Business-Class Reclining Seats',
       'Aerodynamic European Styling & Wide Aisles',
@@ -141,7 +141,7 @@ const fallbackFleet = [
     seatingCapacity: '17 + 1 Chauffeur',
     luggageCapacity: 'Extra Heavy Overhead Carrier',
     fuelType: 'Diesel',
-    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller,_Leh-Manali_Highway.jpg?width=800',
     features: [
       'Wide 2x1 Reclining Luxury Seats',
       'Dual High-Capacity AC Units',
@@ -260,8 +260,12 @@ export const FleetPreview = () => {
                 {/* Image Container */}
                 <div className="relative h-44 w-full bg-slate-100 overflow-hidden shrink-0">
                   <img
-                    src={car.image || 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80'}
+                    src={car.image && !car.image.includes('images.unsplash.com') ? car.image : getExactCarImage(car.name)}
                     alt={car.name}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = getExactCarImage(car.name);
+                    }}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
