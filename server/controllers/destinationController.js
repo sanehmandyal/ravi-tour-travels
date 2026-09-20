@@ -7,51 +7,51 @@ const getExactDestinationImages = (name = '', slug = '') => {
   const q = `${name} ${slug}`.toLowerCase();
   if (q.includes('dharamshala') || q.includes('mcleod')) {
     return {
-      heroImage: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
-      featuredImage: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dharamshala_stadium%2Chimachal_pradesh.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dharamshala_stadium%2Chimachal_pradesh.jpg?width=1200',
       images: [
-        'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=1200&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Dharamshala_stadium%2Chimachal_pradesh.jpg?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Mcleodganj.jpg?width=1200'
       ]
     };
   }
   if (q.includes('manali') || q.includes('solang') || q.includes('rohtang')) {
     return {
-      heroImage: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=80',
-      featuredImage: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=80',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hidimba_Temple_Manali.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hidimba_Temple_Manali.jpg?width=1200',
       images: [
-        'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1586351012965-861624544334?auto=format&fit=crop&w=1200&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Hidimba_Temple_Manali.jpg?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Solang_Valley_Manali.JPG?width=1200'
       ]
     };
   }
   if (q.includes('dalhousie') || q.includes('khajjiar')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=1200',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar.jpg?width=1200',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=1200',
-        'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=1200&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar.jpg?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=1200'
       ]
     };
   }
   if (q.includes('bir') || q.includes('billing')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bir-Billing.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bir-Billing.jpg?width=1200',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Paragliding%2C_Bir-Billing_%28HP%29%2C_India.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Paragliding%2C_Bir-Billing_%28HP%29%2C_India.jpg?width=1200',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Bir-Billing.jpg?width=1200',
-        'https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=1200&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Paragliding%2C_Bir-Billing_%28HP%29%2C_India.jpg?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Bir-Billing.jpg?width=1200'
       ]
     };
   }
   if (q.includes('shimla') || q.includes('kufri')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_Shimla.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_Shimla.jpg?width=1200',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_-_Ridge_-_Shimla_2014-05-07_0963.JPG?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_-_Ridge_-_Shimla_2014-05-07_0963.JPG?width=1200',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_Shimla.jpg?width=1200',
-        'https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=1200&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_-_Ridge_-_Shimla_2014-05-07_0963.JPG?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_Shimla.jpg?width=1200'
       ]
     };
   }
@@ -61,27 +61,27 @@ const getExactDestinationImages = (name = '', slug = '') => {
       featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Key_Monastery,_Himachal_Pradesh.jpg?width=1200',
       images: [
         'https://commons.wikimedia.org/wiki/Special:FilePath/Key_Monastery,_Himachal_Pradesh.jpg?width=1200',
-        'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=1200&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/1000_Year_loop.jpg?width=1200'
       ]
     };
   }
   if (q.includes('kasol') || q.includes('manikaran') || q.includes('tosh') || q.includes('parvati')) {
     return {
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Lake.jpg?width=1200',
-      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Lake.jpg?width=1200',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Sahib%2C_Himachal_Pradesh.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Sahib%2C_Himachal_Pradesh.jpg?width=1200',
       images: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Lake.jpg?width=1200',
-        'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=1200&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Sahib%2C_Himachal_Pradesh.jpg?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Lake.jpg?width=1200'
       ]
     };
   }
   if (q.includes('jibhi') || q.includes('tirthan')) {
     return {
-      heroImage: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
-      featuredImage: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Jibhi_Bridge.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Jibhi_Bridge.jpg?width=1200',
       images: [
-        'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=1200&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Jibhi_Bridge.jpg?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Jibhi_Waterfall_Gate.jpg?width=1200'
       ]
     };
   }
@@ -91,44 +91,57 @@ const getExactDestinationImages = (name = '', slug = '') => {
       featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Chitkul_the_last_village_of_India.jpg?width=1200',
       images: [
         'https://commons.wikimedia.org/wiki/Special:FilePath/Chitkul_the_last_village_of_India.jpg?width=1200',
-        'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Temple_at_Chitkul.JPG?width=1200'
       ]
     };
   }
   if (q.includes('palampur') || q.includes('baijnath')) {
     return {
-      heroImage: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
-      featuredImage: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Baijnath_temple.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Baijnath_temple.jpg?width=1200',
       images: [
-        'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=1200&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Baijnath_temple.jpg?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=1200'
       ]
     };
   }
-  if (q.includes('kangra') || q.includes('jawala') || q.includes('chintpurni')) {
+  if (q.includes('jawala') || q.includes('chintpurni')) {
+    return {
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Jawala_Ji_Temple.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Jawala_Ji_Temple.jpg?width=1200',
+      images: [
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Jawala_Ji_Temple.jpg?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Chintpurni_Devi_(1).JPG?width=1200'
+      ]
+    };
+  }
+  if (q.includes('kangra') || q.includes('masroor') || q.includes('chamunda')) {
     return {
       heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=1200',
       featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=1200',
       images: [
         'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=1200',
-        'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_,Himachal_Pradesh_06.jpg?width=1200'
       ]
     };
   }
   if (q.includes('kullu') || q.includes('naggar')) {
     return {
-      heroImage: 'https://images.unsplash.com/photo-1586351012965-861624544334?auto=format&fit=crop&w=1200&q=80',
-      featuredImage: 'https://images.unsplash.com/photo-1586351012965-861624544334?auto=format&fit=crop&w=1200&q=80',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Naggar_Castle_-_2.jpg?width=1200',
+      featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Naggar_Castle_-_2.jpg?width=1200',
       images: [
-        'https://images.unsplash.com/photo-1586351012965-861624544334?auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Naggar_Castle_-_2.jpg?width=1200',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Naggar_Castle.jpg?width=1200'
       ]
     };
   }
   return {
-    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=1200',
-    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=1200',
-    images: ['https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=1200']
+    heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dharamshala_stadium%2Chimachal_pradesh.jpg?width=1200',
+    featuredImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dharamshala_stadium%2Chimachal_pradesh.jpg?width=1200',
+    images: [
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Dharamshala_stadium%2Chimachal_pradesh.jpg?width=1200',
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar.jpg?width=1200'
+    ]
   };
 };
 
@@ -137,9 +150,12 @@ const normalizeDestination = (dest) => {
   const doc = dest.toObject ? dest.toObject() : { ...dest };
   const exact = getExactDestinationImages(doc.name, doc.slug);
   const isGeneric = (url) => !url || 
-    url.includes('photo-1507525428034-b723cf961d3e') || 
-    url.includes('photo-1506744038136-46273834b3fb') ||
-    url.includes('photo-1590766940554-634a7ed41450');
+    typeof url !== 'string' ||
+    url.includes('unsplash.com') ||
+    url.includes('photo-15') ||
+    url.includes('photo-16') ||
+    url.includes('photo-14') ||
+    !url.startsWith('http');
 
   if (isGeneric(doc.heroImage)) {
     doc.heroImage = exact.heroImage;
@@ -149,6 +165,9 @@ const normalizeDestination = (dest) => {
   }
   if (!Array.isArray(doc.images) || doc.images.length === 0 || doc.images.some(isGeneric)) {
     doc.images = exact.images;
+  }
+  if (!Array.isArray(doc.gallery) || doc.gallery.length === 0 || doc.gallery.some(isGeneric)) {
+    doc.gallery = exact.images;
   }
   return doc;
 };

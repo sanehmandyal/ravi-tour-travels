@@ -30,16 +30,14 @@ const runSeed = async () => {
       region: 'Himalayas',
       shortDescription: 'Spiritual heart of Kangra with the Dalai Lama Temple, HPCA Stadium, and snow-capped Dhauladhar peaks.',
       description: 'Home to His Holiness the 14th Dalai Lama and the seat of the Tibetan government-in-exile, Dharamshala and McLeodganj offer a mesmerizing fusion of Buddhist spirituality, colonial charm, cedar woodlands, and scenic mountain cafes. Key highlights include the world-famous HPCA stadium, the ridge of Triund, Bhagsu waterfall, and peaceful monasteries.',
-      heroImage: 'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=1600&q=80',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dharamshala_stadium%2Chimachal_pradesh.jpg?width=1200',
       gallery: [
-        'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Dharamshala_stadium%2Chimachal_pradesh.jpg?width=800',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Mcleodganj.jpg?width=800'
       ],
       attractions: [
-        { title: 'Tsuglagkhang Complex (Dalai Lama Temple)', description: 'Sacred sanctum with rotating prayer wheels and chanting monks.', image: 'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=600&q=80' },
-        { title: 'HPCA Cricket Stadium', description: 'Scenic international stadium with snow-covered Dhauladhar peaks in the backdrop.', image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80' },
-        { title: 'Bhagsunag Waterfall & Temple', description: 'Cascading natural mountain fresh spring and historic freshwater temple.', image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80' }
+        { title: 'HPCA Cricket Stadium', description: 'Scenic international stadium with snow-covered Dhauladhar peaks in the backdrop.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dharamshala_stadium%2Chimachal_pradesh.jpg?width=600' },
+        { title: 'McLeodGanj Town & Tsuglagkhang', description: 'Sacred Buddhist sanctum, prayer wheels, and Dalai Lama residence.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mcleodganj.jpg?width=600' }
       ],
       thingsToDo: [
         { title: 'Triund Day Trek', description: 'Trek up through rhododendron and pine forests for panoramic Dhauladhar vistas.', icon: 'Compass' },
@@ -58,15 +56,14 @@ const runSeed = async () => {
       region: 'Himalayas',
       shortDescription: 'The "Mini Switzerland of India" featuring dense deodar forests, colonial bungalows, and saucer-shaped emerald meadows.',
       description: 'Spread over five scenic hills, Dalhousie is famed for its vintage Scottish architecture, tranquil pine-scented promenades, and old stone churches. A short scenic drive away lies Khajjiar, a breathtaking saucer-shaped green meadow ringed by tall cedars with a pristine lake at its center, famously officially christened "Mini Switzerland".',
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=1200',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar.jpg?width=1200',
       gallery: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=800',
-        'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=800&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar.jpg?width=800',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=800'
       ],
       attractions: [
-        { title: 'Khajjiar Lake & Meadow', description: 'Lush alpine meadow with cedar trees, floating island, and 12th-century Khajji Nag temple.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=600' },
-        { title: 'Dainkund Peak', description: 'Highest point in Dalhousie offering 360-degree views of snow peaks and valley rivers.', image: 'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=600&q=80' },
-        { title: 'Kalatop Wildlife Sanctuary', description: 'Thick deodar woodlands home to barking deer and exotic Himalayan birds.', image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80' }
+        { title: 'Khajjiar Lake & Meadow', description: 'Lush alpine meadow with cedar trees, floating island, and 12th-century Khajji Nag temple.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar.jpg?width=600' },
+        { title: 'Khajjiar Forest Vista', description: 'Thick deodar woodlands home to barking deer and exotic Himalayan views.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=600' }
       ],
       thingsToDo: [
         { title: 'Zorbing & Horse Riding in Khajjiar', description: 'Roll down green grassy slopes or take a peaceful pony ride across the meadow.', icon: 'Sun' },
@@ -85,15 +82,14 @@ const runSeed = async () => {
       region: 'Himalayas',
       shortDescription: 'Snow-capped peaks, pine forests, Rohtang Pass glaciers, Atal Tunnel, and thrilling mountain sports.',
       description: 'Nestled on the banks of the Beas River, Manali is one of India’s most celebrated mountain destinations. From skiing down Solang Valley to unwinding near the historic Hadimba Temple, traversing the historic Rohtang Pass, and crossing the engineering marvel of Atal Tunnel to Sissu, Manali caters to families, honeymooners, and adventure-seekers alike.',
-      heroImage: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1600&q=80',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hidimba_Temple_Manali.jpg?width=1200',
       gallery: [
-        'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1586351012965-861624544334?auto=format&fit=crop&w=800&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Hidimba_Temple_Manali.jpg?width=800',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Solang_Valley_Manali.JPG?width=800'
       ],
       attractions: [
-        { title: 'Solang Valley', description: 'Famous for paragliding, zorbing, and winter snow skiing.', image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80' },
-        { title: 'Atal Tunnel & Sissu Waterfall', description: 'Cross 9.02 km mountain tunnel into the glacial paradise of Lahaul.', image: 'https://images.unsplash.com/photo-1586351012965-861624544334?auto=format&fit=crop&w=600&q=80' },
-        { title: 'Hadimba Wooden Temple', description: 'Historic 16th-century pagoda-style wooden temple inside deodar woods.', image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80' }
+        { title: 'Hadimba Wooden Temple', description: 'Historic 16th-century pagoda-style wooden temple inside deodar woods.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Hidimba_Temple_Manali.jpg?width=600' },
+        { title: 'Solang Valley Snow Point', description: 'Famous for paragliding, zorbing, and winter snow skiing.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Solang_Valley_Manali.JPG?width=600' }
       ],
       thingsToDo: [
         { title: 'Skiing & Snow Tubing at Solang', description: 'Pure powder snow fun during winter months.', icon: 'Wind' },
@@ -112,14 +108,14 @@ const runSeed = async () => {
       region: 'Himalayas',
       shortDescription: 'The Queen of Hills with charming British colonial heritage, UNESCO Toy Train, and scenic Mall Road.',
       description: 'Shimla, the former summer capital of British India, retains timeless colonial elegance. Surrounded by oak and deodar forests, Shimla is famed for its iconic Ridge, Christ Church, the UNESCO World Heritage Toy Train, and lush apple orchards and snow points in Kufri.',
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_Shimla.jpg?width=1200',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_-_Ridge_-_Shimla_2014-05-07_0963.JPG?width=1200',
       gallery: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_Shimla.jpg?width=800',
-        'https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=800&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_-_Ridge_-_Shimla_2014-05-07_0963.JPG?width=800',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_Shimla.jpg?width=800'
       ],
       attractions: [
-        { title: 'The Ridge & Mall Road', description: 'The cultural center with neo-Gothic Christ Church and Himalayan valley views.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_Shimla.jpg?width=600' },
-        { title: 'Kufri Snow Point & Nature Park', description: 'Winter wonderland for horse riding, yak rides, and tobogganing.', image: 'https://images.unsplash.com/photo-1562979314-bee7453e911c?auto=format&fit=crop&w=600&q=80' }
+        { title: 'The Ridge & Mall Road', description: 'The cultural center with neo-Gothic Christ Church and Himalayan valley views.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_-_Ridge_-_Shimla_2014-05-07_0963.JPG?width=600' },
+        { title: 'Christ Church Shimla', description: 'Historic yellow neo-Gothic church standing prominently on The Ridge.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_Shimla.jpg?width=600' }
       ],
       thingsToDo: [
         { title: 'Kalka-Shimla Toy Train Ride', description: 'Ride through 102 tunnels across scenic pine valleys.', icon: 'Train' },
@@ -138,15 +134,14 @@ const runSeed = async () => {
       region: 'Himalayas',
       shortDescription: 'World-famous Paragliding Capital of India with high-altitude take-offs, Tibetan monasteries, and organic tea estates.',
       description: 'Ranked as the 2nd best site in the world for paragliding, Bir Billing is an international adventure haven. Take off from the dizzying ridge of Billing (8,000 ft) and glide effortlessly over the breathtaking Kangra Valley before touching down smoothly in Bir. Explore Tibetan settlements, peaceful monasteries, and lush green tea gardens.',
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bir-Billing.jpg?width=1200',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Paragliding%2C_Bir-Billing_%28HP%29%2C_India.jpg?width=1200',
       gallery: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Bir-Billing.jpg?width=800',
-        'https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=800&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Paragliding%2C_Bir-Billing_%28HP%29%2C_India.jpg?width=800',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Bir-Billing.jpg?width=800'
       ],
       attractions: [
-        { title: 'Billing Take-Off Point', description: 'Launchpad at 2,400 meters offering panoramic aerial views of Kangra.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bir-Billing.jpg?width=600' },
-        { title: 'Chokling Monastery', description: 'Magnificent Tibetan Buddhist monastery with a grand stupa.', image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80' },
-        { title: 'Baijnath Temple', description: 'Ancient 13th-century stone Nagara-style temple dedicated to Lord Shiva.', image: 'https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=600&q=80' }
+        { title: 'Billing Paragliding Take-Off Point', description: 'Launchpad at 2,400 meters offering panoramic aerial views of Kangra.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Paragliding%2C_Bir-Billing_%28HP%29%2C_India.jpg?width=600' },
+        { title: 'Bir Billing Mountain Ridge', description: 'Scenic launch ridge where gliders take flight over Himachal peaks.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bir-Billing.jpg?width=600' }
       ],
       thingsToDo: [
         { title: 'Tandem Paragliding Flight', description: 'Fly high with seasoned, certified pilots with full HD GoPro video.', icon: 'Wind' },
@@ -168,12 +163,11 @@ const runSeed = async () => {
       heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Key_Monastery,_Himachal_Pradesh.jpg?width=1200',
       gallery: [
         'https://commons.wikimedia.org/wiki/Special:FilePath/Key_Monastery,_Himachal_Pradesh.jpg?width=800',
-        'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=800&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/1000_Year_loop.jpg?width=800'
       ],
       attractions: [
         { title: 'Key Gompa Monastery', description: 'Historic fortress-like Tibetan Buddhist monastery over 1,000 years old.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Key_Monastery,_Himachal_Pradesh.jpg?width=600' },
-        { title: 'Chandratal Lake (Moon Lake)', description: 'Turquoise glacial lake at 14,100 ft reflecting towering mountain crests.', image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80' },
-        { title: 'Hikkim & Komic Villages', description: 'World’s highest post office and motorable village.', image: 'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=600&q=80' }
+        { title: 'Spiti Key Complex', description: 'Perched monastery views over Spiti river valley.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/1000_Year_loop.jpg?width=600' }
       ],
       thingsToDo: [
         { title: 'Milky Way Stargazing', description: 'Marvel at pristine, crystal-clear Himalayan night skies.', icon: 'Star' },
@@ -192,14 +186,14 @@ const runSeed = async () => {
       region: 'Himalayas',
       shortDescription: 'Riverside mountain cafes, hot sulphur springs of Manikaran, apple orchards of Tosh, and Kheerganga trails.',
       description: 'Cradled in the lush Parvati Valley, Kasol is a tranquil riverside haven famous for fresh mountain air, vibrant bohemian cafes, and pine forest walks along the churning Parvati river. Nearby lies holy Manikaran with its natural thermal springs and historic Gurudwara, and the rustic cliffside village of Tosh.',
-      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Lake.jpg?width=1200',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Sahib%2C_Himachal_Pradesh.jpg?width=1200',
       gallery: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Lake.jpg?width=800',
-        'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=800&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Sahib%2C_Himachal_Pradesh.jpg?width=800',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Lake.jpg?width=800'
       ],
       attractions: [
-        { title: 'Manikaran Sahib Gurudwara & Hot Springs', description: 'Sacred thermal sulphur springs that cook rice and heal ailments.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Lake.jpg?width=600' },
-        { title: 'Tosh Village & Waterfall', description: 'Traditional wooden Himachali village with staggering views of snow peaks.', image: 'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=600&q=80' }
+        { title: 'Manikaran Sahib Gurudwara & Hot Springs', description: 'Sacred thermal sulphur springs that cook rice and heal ailments.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Sahib%2C_Himachal_Pradesh.jpg?width=600' },
+        { title: 'Parvati River Valley', description: 'Raging crystal river surrounded by pine mountains and wooden bridges.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Lake.jpg?width=600' }
       ],
       thingsToDo: [
         { title: 'Chalal Riverside Forest Walk', description: 'Peaceful stroll through deodar trails crossing scenic suspension bridges.', icon: 'Compass' },
@@ -218,13 +212,14 @@ const runSeed = async () => {
       region: 'Himalayas',
       shortDescription: 'Pristine offbeat paradise with wooden Himachali cottages, Serolsar Lake, Jalori Pass, and trout streams.',
       description: 'Hidden away in the Kullu district, Jibhi and Tirthan Valley are the crown jewels of offbeat Himachal. Bordering the UNESCO World Heritage Great Himalayan National Park, enjoy cascading freshwater streams, serene brown trout angling, lush cedar woodlands, and cozy wooden chalets.',
-      heroImage: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Jibhi_Bridge.jpg?width=1200',
       gallery: [
-        'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Jibhi_Bridge.jpg?width=800',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Jibhi_Waterfall_Gate.jpg?width=800'
       ],
       attractions: [
-        { title: 'Jalori Pass & Serolsar Lake', description: 'High mountain pass at 10,800 ft leading through oak woods to a sacred crystal lake.', image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80' },
-        { title: 'Jibhi Waterfalls', description: 'Hidden multi-tiered waterfalls connected by rustic wooden bridges.', image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80' }
+        { title: 'Jibhi Wooden Bridge', description: 'Scenic pine forest stream and traditional wooden footbridge.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Jibhi_Bridge.jpg?width=600' },
+        { title: 'Jibhi Waterfall Trail', description: 'Hidden multi-tiered waterfalls connected by rustic wooden bridges.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Jibhi_Waterfall_Gate.jpg?width=600' }
       ],
       thingsToDo: [
         { title: 'Trout Fishing in Tirthan River', description: 'Catch and release freshwater rainbow and brown trout.', icon: 'Compass' },
@@ -246,11 +241,11 @@ const runSeed = async () => {
       heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Chitkul_the_last_village_of_India.jpg?width=1200',
       gallery: [
         'https://commons.wikimedia.org/wiki/Special:FilePath/Chitkul_the_last_village_of_India.jpg?width=800',
-        'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Temple_at_Chitkul.JPG?width=800'
       ],
       attractions: [
-        { title: 'Kinner Kailash View in Kalpa', description: 'Gaze at the sacred 6,050m peak that dramatically changes colors through the day.', image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80' },
-        { title: 'Chitkul (Last Indian Village)', description: 'Charming wooden village surrounded by snowy peaks on the banks of Baspa River.', image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80' }
+        { title: 'Chitkul (Last Indian Village)', description: 'Charming wooden village surrounded by snowy peaks on the banks of Baspa River.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Chitkul_the_last_village_of_India.jpg?width=600' },
+        { title: 'Mathi Temple Chitkul', description: 'Ancient wooden temple dedicated to the guardian goddess of Chitkul.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Temple_at_Chitkul.JPG?width=600' }
       ],
       thingsToDo: [
         { title: 'Drive through Tranda Dhank', description: 'Hindustan-Tibet highway cut into sheer vertical granite cliffs.', icon: 'Compass' },
@@ -269,13 +264,14 @@ const runSeed = async () => {
       region: 'Himalayas',
       shortDescription: 'The Tea Capital of North India with sprawling emerald tea gardens, Neugal Khad stream, and ancient Shiva temple.',
       description: 'Lying in the picturesque Kangra valley, Palampur is framed by the dramatic snow-crested Dhauladhar mountains. Stroll through fragrant Kangra tea estates, visit the historic Wah Tea Estate, walk along Neugal Khad gorge, and offer prayers at the 13th-century stone temple of Baijnath.',
-      heroImage: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Baijnath_temple.jpg?width=1200',
       gallery: [
-        'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Baijnath_temple.jpg?width=800',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=800'
       ],
       attractions: [
-        { title: 'Kangra Tea Estates & Factory', description: 'Walk through century-old tea gardens and taste world-famous Kangra Green Tea.', image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80' },
-        { title: 'Baijnath Mahadev Temple', description: 'Architectural masterpiece housing one of the 12 revered Shiva Jyotirlingas.', image: 'https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=600&q=80' }
+        { title: 'Baijnath Mahadev Temple', description: 'Architectural masterpiece housing one of the 12 revered Shiva Jyotirlingas.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Baijnath_temple.jpg?width=600' },
+        { title: 'Kangra Valley Tea Region', description: 'Walk through century-old tea gardens and taste world-famous Kangra Green Tea.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=600' }
       ],
       thingsToDo: [
         { title: 'Tea Tasting Experience', description: 'Sample organic orthodox black and green teas.', icon: 'Coffee' },
@@ -296,12 +292,12 @@ const runSeed = async () => {
       description: 'Kangra is the cultural and historical cradle of Himachal Pradesh. Home to powerful 51 Shaktipeeths including Brajeshwari Devi Kangra, Jawalamukhi (where sacred blue flames burn perpetually without fuel), Chamunda Devi, and Baglamukhi temple, along with the magnificent 1,000-year-old Kangra Fort and Masroor Rock-cut Monolithic Temples.',
       heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=1200',
       gallery: [
-        'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=800'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=800',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Jawala_Ji_Temple.jpg?width=800'
       ],
       attractions: [
         { title: 'Kangra Fort', description: 'The oldest surviving fort in the Himalayas with royal gates and museum.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=600' },
-        { title: 'Jawalamukhi Shaktipeeth', description: 'Sacred temple where eternal natural flames have burned for centuries.', image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80' },
-        { title: 'Masroor Rock Cut Temple', description: 'Known as the Ellora of the North, 8th-century monolithic stone shrines.', image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80' }
+        { title: 'Jawalamukhi Shaktipeeth', description: 'Sacred temple where eternal natural flames have burned for centuries.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Jawala_Ji_Temple.jpg?width=600' }
       ],
       thingsToDo: [
         { title: 'Devi Darshan Circuit', description: 'Dedicated comfortable AC cab pilgrimage covering all major Shaktipeeths.', icon: 'Heart' },
@@ -320,13 +316,14 @@ const runSeed = async () => {
       region: 'Himalayas',
       shortDescription: 'Valley of Gods with wooden medieval Naggar Castle, Nicholas Roerich Art Gallery, and thrilling Beas river rafting.',
       description: 'The ancient capital of the Kullu Rajas, Naggar is an artistic haven nestled amidst apple orchards and deodar hills above the Beas river. Explore the 500-year-old wooden Naggar Castle with its kath-kuni architecture, the Roerich Art estate, and bustling handloom shawl weaving centers in Kullu.',
-      heroImage: 'https://images.unsplash.com/photo-1586351012965-861624544334?auto=format&fit=crop&w=1600&q=80',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Naggar_Castle_-_2.jpg?width=1200',
       gallery: [
-        'https://images.unsplash.com/photo-1586351012965-861624544334?auto=format&fit=crop&w=800&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Naggar_Castle_-_2.jpg?width=800',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Naggar_Castle.jpg?width=800'
       ],
       attractions: [
-        { title: 'Naggar Castle', description: 'Medieval timber and stone fort commanding sweeping views of Kullu valley.', image: 'https://images.unsplash.com/photo-1586351012965-861624544334?auto=format&fit=crop&w=600&q=80' },
-        { title: 'Nicholas Roerich Art Gallery', description: 'Historic home and estate displaying iconic paintings of the Himalayas.', image: 'https://images.unsplash.com/photo-1586351012965-861624544334?auto=format&fit=crop&w=600&q=80' }
+        { title: 'Naggar Castle', description: 'Medieval timber and stone fort commanding sweeping views of Kullu valley.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Naggar_Castle_-_2.jpg?width=600' },
+        { title: 'Naggar Royal Courtyard', description: 'Historic wooden castle architectural woodwork in Kullu valley.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Naggar_Castle.jpg?width=600' }
       ],
       thingsToDo: [
         { title: 'White Water Rafting in Beas', description: '14 km river rafting expedition with certified guides and lifejackets.', icon: 'Compass' },

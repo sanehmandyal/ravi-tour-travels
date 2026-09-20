@@ -65,7 +65,10 @@ export const DestinationPreview = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {destinations.map((dest) => {
               const exact = getExactDestinationImages(dest.name, dest.slug);
-              const destImg = dest.heroImage || dest.featuredImage || (dest.images && dest.images[0]) || exact.heroImage;
+              const isInvalid = (url) => !url || typeof url !== 'string' || url.includes('unsplash.com') || url.includes('photo-15') || url.includes('photo-16') || url.includes('photo-14');
+              const destImg = isInvalid(dest.featuredImage)
+                ? (isInvalid(dest.heroImage) ? exact.featuredImage : dest.heroImage)
+                : dest.featuredImage;
               return (
                 <Link
                   key={dest._id}
@@ -79,7 +82,7 @@ export const DestinationPreview = () => {
                       alt={dest.name}
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = exact.heroImage;
+                        e.target.src = exact.featuredImage || exact.heroImage;
                       }}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"

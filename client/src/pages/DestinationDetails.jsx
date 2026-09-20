@@ -58,7 +58,10 @@ export const DestinationDetails = () => {
   }
 
   const exact = getExactDestinationImages(destination.name, destination.slug);
-  const heroImg = destination.heroImage || destination.featuredImage || exact.heroImage;
+  const isInvalid = (url) => !url || typeof url !== 'string' || url.includes('unsplash.com') || url.includes('photo-15') || url.includes('photo-16') || url.includes('photo-14');
+  const heroImg = isInvalid(destination.heroImage)
+    ? (isInvalid(destination.featuredImage) ? exact.heroImage : destination.featuredImage)
+    : destination.heroImage;
 
   return (
     <div className="bg-slate-50 min-h-screen pb-24">
@@ -151,30 +154,32 @@ export const DestinationDetails = () => {
             <div>
               <h2 className="text-2xl font-bold text-navy-900 mb-6">Popular Attractions in {destination.name}</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {destination.attractions.map((attr, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-white rounded-2xl overflow-hidden shadow-soft border border-slate-100 flex flex-col"
-                  >
-                    {attr.image && (
+                {destination.attractions.map((attr, idx) => {
+                  const fallbackAttrImg = (exact.images && exact.images[idx % exact.images.length]) || exact.heroImage;
+                  const attrImg = isInvalid(attr.image) ? fallbackAttrImg : attr.image;
+                  return (
+                    <div
+                      key={idx}
+                      className="bg-white rounded-2xl overflow-hidden shadow-soft border border-slate-100 flex flex-col"
+                    >
                       <div className="h-44 w-full bg-slate-100 overflow-hidden">
                         <img
-                          src={attr.image || 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80'}
+                          src={attrImg}
                           alt={attr.title}
                           onError={(e) => {
                             e.target.onerror = null;
-                            e.target.src = 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80';
+                            e.target.src = fallbackAttrImg;
                           }}
                           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         />
                       </div>
-                    )}
-                    <div className="p-5">
-                      <h3 className="text-base font-bold text-navy-900 mb-1">{attr.title}</h3>
-                      <p className="text-xs text-slate-500 leading-relaxed">{attr.description}</p>
+                      <div className="p-5">
+                        <h3 className="text-base font-bold text-navy-900 mb-1">{attr.title}</h3>
+                        <p className="text-xs text-slate-500 leading-relaxed">{attr.description}</p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           )}
@@ -198,14 +203,17 @@ export const DestinationDetails = () => {
           )}
 
           {/* Destination Gallery */}
-          {destination.gallery && destination.gallery.length > 0 && (
+          {((destination.gallery && destination.gallery.length > 0) || (exact.images && exact.images.length > 0)) && (
             <div>
               <h2 className="text-2xl font-bold text-navy-900 mb-6">Photo Gallery</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {destination.gallery.map((img, idx) => (
+                {((destination.gallery && destination.gallery.length > 0 && !destination.gallery.some(isInvalid))
+                  ? destination.gallery
+                  : exact.images
+                ).map((img, idx) => (
                   <div key={idx} className="h-48 rounded-2xl overflow-hidden bg-slate-100 shadow-soft">
                     <img
-                      src={img && !img.includes('photo-1506744038136-46273834b3fb') ? img : exact.heroImage}
+                      src={isInvalid(img) ? exact.heroImage : img}
                       alt={`${destination.name} ${idx + 1}`}
                       onError={(e) => {
                         e.target.onerror = null;
