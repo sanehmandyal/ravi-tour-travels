@@ -34,6 +34,8 @@ import {
 import Loader from '../../components/common/Loader';
 import Badge from '../../components/common/Badge';
 import { testimonialApi } from '../../services/testimonialApi';
+import { bookingApi, isFakeBooking } from '../../services/bookingApi';
+import { inquiryApi, isFakeInquiry } from '../../services/inquiryApi';
 
 export const Dashboard = () => {
   const [data, setData] = useState(null);
@@ -44,18 +46,63 @@ export const Dashboard = () => {
 
   const fetchDashboard = async () => {
     try {
-      const [res, revRes] = await Promise.all([
+      const [res, revRes, bookingsRes, inquiriesRes] = await Promise.all([
         adminApi.getDashboard().catch(() => null),
-        testimonialApi.getAll({ status: '' }).catch(() => null)
+        testimonialApi.getAll({ status: '' }).catch(() => null),
+        bookingApi.getAll({ limit: 10 }).catch(() => null),
+        inquiryApi.getAll({ limit: 10 }).catch(() => null)
       ]);
-      if (res && res.success && res.data) {
-        setData(res.data);
-      }
+
+      let backendData = (res && res.success && res.data) ? res.data : {};
+
+      // Filter out any fake bookings/inquiries that might be in backend response
+      const remoteBookings = (backendData.recentBookings || []).filter(b => !isFakeBooking(b));
+      const localBookings = (bookingsRes && bookingsRes.data ? bookingsRes.data : []).filter(b => !isFakeBooking(b));
+      const genuineBookings = remoteBookings.length > 0
+        ? remoteBookings
+        : localBookings.slice(0, 5);
+
+      const remoteInquiries = (backendData.recentInquiries || []).filter(i => !isFakeInquiry(i));
+      const localInquiries = (inquiriesRes && inquiriesRes.data ? inquiriesRes.data : []).filter(i => !isFakeInquiry(i));
+      const genuineInquiries = remoteInquiries.length > 0
+        ? remoteInquiries
+        : localInquiries.slice(0, 5);
+
+      const totalBookings = backendData.metrics?.totalBookings ?? localBookings.length;
+      const pendingBookings = backendData.metrics?.pendingBookings ?? localBookings.filter(b => b.bookingStatus === 'Pending').length;
+      const confirmedBookings = backendData.metrics?.confirmedBookings ?? localBookings.filter(b => b.bookingStatus === 'Confirmed').length;
+      const completedBookings = backendData.metrics?.completedBookings ?? localBookings.filter(b => b.bookingStatus === 'Completed').length;
+      const totalRevenue = backendData.metrics?.totalRevenue ?? localBookings.reduce((acc, b) => acc + (Number(b.totalAmount) || 0), 0);
+      const totalInquiries = backendData.metrics?.totalInquiries ?? localInquiries.length;
+      const newInquiries = backendData.metrics?.newInquiries ?? localInquiries.filter(i => i.status === 'New').length;
+
+      setData({
+        ...backendData,
+        metrics: {
+          ...backendData.metrics,
+          totalBookings,
+          pendingBookings,
+          confirmedBookings,
+          completedBookings,
+          totalRevenue,
+          totalInquiries,
+          newInquiries
+        },
+        recentBookings: genuineBookings,
+        recentInquiries: genuineInquiries,
+        statusDistribution: [
+          { name: 'Confirmed', value: confirmedBookings },
+          { name: 'Completed', value: completedBookings },
+          { name: 'Pending Review', value: pendingBookings },
+          { name: 'Cancelled', value: backendData.metrics?.cancelledBookings || 0 }
+        ]
+      });
+
       if (revRes && revRes.success && Array.isArray(revRes.data)) {
         setReviewsCount(revRes.data.length);
       }
     } catch (err) {
-      console.warn('Backend live metrics unavailable, applying operational data:', err);
+      console.warn('Dashboard sync error:', err);
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -64,6 +111,14 @@ export const Dashboard = () => {
 
   useEffect(() => {
     fetchDashboard();
+
+    const handleUpdate = () => fetchDashboard();
+    window.addEventListener('rtt_bookings_updated', handleUpdate);
+    window.addEventListener('rtt_inquiries_updated', handleUpdate);
+    return () => {
+      window.removeEventListener('rtt_bookings_updated', handleUpdate);
+      window.removeEventListener('rtt_inquiries_updated', handleUpdate);
+    };
   }, []);
 
   const handleManualRefresh = () => {
@@ -79,31 +134,26 @@ export const Dashboard = () => {
     );
   }
 
-  // Robust metrics fallback to guarantee 0 blank spaces
+  // Live genuine metrics
   const rawMetrics = data?.metrics || {};
   const metrics = {
-    totalBookings: rawMetrics.totalBookings || 48,
-    pendingBookings: rawMetrics.pendingBookings || 4,
-    totalRevenue: rawMetrics.totalRevenue || 528000,
+    totalBookings: rawMetrics.totalBookings || 0,
+    pendingBookings: rawMetrics.pendingBookings || 0,
+    confirmedBookings: rawMetrics.confirmedBookings || 0,
+    completedBookings: rawMetrics.completedBookings || 0,
+    totalRevenue: rawMetrics.totalRevenue || 0,
     activeFleet: 12,
     totalDestinations: rawMetrics.totalDestinations || 10,
-    totalGalleryPhotos: 16,
-    totalInquiries: rawMetrics.totalInquiries || 29,
-    newInquiries: 6,
+    totalInquiries: rawMetrics.totalInquiries || 0,
+    newInquiries: rawMetrics.newInquiries || 0,
   };
 
-  // Monthly trends with reliable Himachal tour seasonality data
-  const hasLiveTrends = data?.monthlyTrends && data.monthlyTrends.some(t => (t.revenue > 0 || t.bookings > 0));
+  // Monthly trends with actual data or zero baseline
+  const hasLiveTrends = data?.monthlyTrends && data.monthlyTrends.length > 0 && data.monthlyTrends.some(t => (t.revenue > 0 || t.bookings > 0));
+  const defaultMonths = ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'];
   const monthlyTrends = hasLiveTrends
     ? data.monthlyTrends
-    : [
-        { name: 'Apr', bookings: 28, revenue: 210000 },
-        { name: 'May', bookings: 46, revenue: 360000 },
-        { name: 'Jun', bookings: 58, revenue: 470000 },
-        { name: 'Jul', bookings: 34, revenue: 260000 },
-        { name: 'Aug', bookings: 30, revenue: 230000 },
-        { name: 'Sep', bookings: 48, revenue: 385000 },
-      ];
+    : defaultMonths.map(name => ({ name, bookings: 0, revenue: 0 }));
 
   // Status breakdown donut
   const statusColors = ['#0ea5e9', '#10b981', '#f59e0b', '#8b5cf6'];
@@ -111,102 +161,21 @@ export const Dashboard = () => {
   const statusDistribution = hasLiveDistribution
     ? data.statusDistribution
     : [
-        { name: 'Confirmed', value: 32 },
-        { name: 'Completed', value: 46 },
-        { name: 'In Progress', value: 14 },
-        { name: 'Pending Review', value: 4 },
+        { name: 'Confirmed', value: metrics.confirmedBookings },
+        { name: 'Completed', value: metrics.completedBookings },
+        { name: 'Pending Review', value: metrics.pendingBookings },
+        { name: 'Cancelled', value: 0 },
       ];
 
-  // Recent bookings list
+  // Genuine bookings list
   const recentBookings = (data?.recentBookings && data.recentBookings.length > 0)
-    ? data.recentBookings
-    : [
-        {
-          _id: 'bk-1',
-          bookingNumber: 'RTT-2026-108',
-          customerName: 'Aarav Sharma',
-          phone: '+91 98160 44211',
-          serviceName: 'Dharamshala - Dalhousie (4D/3N)',
-          vehicle: 'Innova Crysta',
-          totalAmount: 18500,
-          bookingStatus: 'Confirmed',
-          date: 'Today, 10:30 AM'
-        },
-        {
-          _id: 'bk-2',
-          bookingNumber: 'RTT-2026-109',
-          customerName: 'Vikram Malhotra',
-          phone: '+91 98721 88390',
-          serviceName: 'Manali - Rohtang Pass Special',
-          vehicle: 'Toyota Fortuner',
-          totalAmount: 26000,
-          bookingStatus: 'In Progress',
-          date: 'Yesterday'
-        },
-        {
-          _id: 'bk-3',
-          bookingNumber: 'RTT-2026-110',
-          customerName: 'Priya Sundaram',
-          phone: '+91 94180 55122',
-          serviceName: 'Shimla - Kufri Circuit',
-          vehicle: 'Swift Dzire',
-          totalAmount: 12000,
-          bookingStatus: 'Confirmed',
-          date: '16 Sep 2026'
-        },
-        {
-          _id: 'bk-4',
-          bookingNumber: 'RTT-2026-111',
-          customerName: 'Sunil Mehta',
-          phone: '+91 98051 33290',
-          serviceName: 'Chandigarh to Kangra One-Way Drop',
-          vehicle: 'Kia Carens',
-          totalAmount: 7500,
-          bookingStatus: 'Completed',
-          date: '15 Sep 2026'
-        },
-        {
-          _id: 'bk-5',
-          bookingNumber: 'RTT-2026-112',
-          customerName: 'Dr. Rajesh Khanna',
-          phone: '+91 98165 77102',
-          serviceName: 'Kangra Valley & Bir Paragliding Tour',
-          vehicle: 'Innova Hycross',
-          totalAmount: 15500,
-          bookingStatus: 'Pending',
-          date: '14 Sep 2026'
-        }
-      ];
+    ? data.recentBookings.filter(b => !isFakeBooking(b))
+    : [];
 
-  // Recent inquiries list
+  // Genuine inquiries list
   const recentInquiries = (data?.recentInquiries && data.recentInquiries.length > 0)
-    ? data.recentInquiries
-    : [
-        {
-          _id: 'inq-1',
-          name: 'Amitabh Deshmukh',
-          phone: '+91 98200 44910',
-          message: 'Need 12-seater Tempo Traveller for 6 days family trip to Spiti Valley.',
-          status: 'Contacted',
-          createdAt: '2026-09-18T10:30:00Z'
-        },
-        {
-          _id: 'inq-2',
-          name: 'Neha Kapoor',
-          phone: '+91 97112 55901',
-          message: 'Looking for Innova Crysta pickup from Gaggal Airport to McLeodGanj.',
-          status: 'New',
-          createdAt: '2026-09-18T08:15:00Z'
-        },
-        {
-          _id: 'inq-3',
-          name: 'Col. Sanjeev Nair',
-          phone: '+91 94191 22849',
-          message: 'Complete Himachal 8 days tour inquiry for 4 adults (Dharamshala, Manali, Shimla).',
-          status: 'Resolved',
-          createdAt: '2026-09-17T16:45:00Z'
-        }
-      ];
+    ? data.recentInquiries.filter(i => !isFakeInquiry(i))
+    : [];
 
   return (
     <div className="space-y-8">
@@ -248,7 +217,7 @@ export const Dashboard = () => {
             onClick={() => navigate('/admin/reviews')}
             className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 text-xs font-bold shadow-xs transition-all"
           >
-            <Star className="w-4 h-4 text-amber-500 fill-amber-400" /> Traveler Reviews (Delete)
+            <Star className="w-4 h-4 text-amber-500 fill-amber-400" /> Traveler Reviews
           </button>
         </div>
       </div>
@@ -278,7 +247,7 @@ export const Dashboard = () => {
             <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
               <TrendingUp className="w-4 h-4" />
             </div>
-            <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded-md">+24%</span>
+            <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded-md">INR</span>
           </div>
           <div>
             <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Gross Turnover</p>
@@ -435,37 +404,45 @@ export const Dashboard = () => {
           </div>
 
           <div className="h-56 w-full flex items-center justify-center">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={statusDistribution}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={55}
-                  outerRadius={82}
-                  paddingAngle={5}
-                  dataKey="value"
-                >
-                  {statusDistribution.map((entry, index) => (
-                    <Cell
-                      key={`cell-${index}`}
-                      fill={statusColors[index % statusColors.length]}
-                      stroke="#ffffff"
-                      strokeWidth={2}
-                    />
-                  ))}
-                </Pie>
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: '#0f172a',
-                    borderRadius: '8px',
-                    border: 'none',
-                    color: '#fff',
-                    fontSize: '12px'
-                  }}
-                />
-              </PieChart>
-            </ResponsiveContainer>
+            {hasLiveDistribution ? (
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={statusDistribution}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={55}
+                    outerRadius={82}
+                    paddingAngle={5}
+                    dataKey="value"
+                  >
+                    {statusDistribution.map((entry, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={statusColors[index % statusColors.length]}
+                        stroke="#ffffff"
+                        strokeWidth={2}
+                      />
+                    ))}
+                  </Pie>
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: '#0f172a',
+                      borderRadius: '8px',
+                      border: 'none',
+                      color: '#fff',
+                      fontSize: '12px'
+                    }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className="text-center py-6 text-slate-400">
+                <CalendarCheck className="w-9 h-9 mx-auto text-slate-300 mb-2 stroke-1" />
+                <p className="text-xs font-semibold text-slate-500">No Booking Records Yet</p>
+                <p className="text-[11px] text-slate-400 mt-0.5">Status breakdown will populate with customer bookings.</p>
+              </div>
+            )}
           </div>
 
           <div className="grid grid-cols-2 gap-2 text-xs pt-3 border-t border-slate-100">
@@ -516,36 +493,48 @@ export const Dashboard = () => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
-                  {recentBookings.map((b) => (
-                    <tr key={b._id} className="hover:bg-slate-50/70 transition-colors">
-                      <td className="py-3 px-3 font-mono font-bold text-brand-700">
-                        {b.bookingNumber || `RTT-${b._id.slice(-4).toUpperCase()}`}
-                      </td>
-                      <td className="py-3 px-3">
-                        <p className="font-bold text-navy-900">{b.customerName || b.user?.name || 'Traveler'}</p>
-                        <p className="text-[10px] text-slate-400">{b.phone || b.user?.phone || 'Direct Call'}</p>
-                      </td>
-                      <td className="py-3 px-3 text-slate-700 font-medium truncate max-w-[160px]">
-                        {b.serviceName || b.package?.title || b.destination?.name || 'Custom Tour'}
-                      </td>
-                      <td className="py-3 px-3 text-slate-600 font-medium">
-                        {b.vehicle || b.carType || 'Innova Crysta'}
-                      </td>
-                      <td className="py-3 px-3 font-bold text-navy-900">
-                        {formatCurrency(b.totalAmount || 12500)}
-                      </td>
-                      <td className="py-3 px-3">
-                        <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                          b.bookingStatus === 'Confirmed' ? 'bg-emerald-100 text-emerald-800' :
-                          b.bookingStatus === 'Completed' ? 'bg-brand-100 text-brand-800' :
-                          b.bookingStatus === 'Cancelled' ? 'bg-rose-100 text-rose-800' :
-                          'bg-amber-100 text-amber-800'
-                        }`}>
-                          {b.bookingStatus || 'Confirmed'}
-                        </span>
+                  {recentBookings.length > 0 ? (
+                    recentBookings.map((b) => (
+                      <tr key={b._id} className="hover:bg-slate-50/70 transition-colors">
+                        <td className="py-3 px-3 font-mono font-bold text-brand-700">
+                          {b.bookingNumber || `RTT-${b._id.slice(-4).toUpperCase()}`}
+                        </td>
+                        <td className="py-3 px-3">
+                          <p className="font-bold text-navy-900">{b.customerName || b.user?.name || 'Traveler'}</p>
+                          <p className="text-[10px] text-slate-400">{b.phone || b.user?.phone || 'Direct Call'}</p>
+                        </td>
+                        <td className="py-3 px-3 text-slate-700 font-medium truncate max-w-[160px]">
+                          {b.serviceName || b.service || b.package?.title || b.destination?.name || 'Custom Tour'}
+                        </td>
+                        <td className="py-3 px-3 text-slate-600 font-medium">
+                          {b.vehicle || b.vehicleType || b.carType || 'Sedan / SUV'}
+                        </td>
+                        <td className="py-3 px-3 font-bold text-navy-900">
+                          {formatCurrency(b.totalAmount || 0)}
+                        </td>
+                        <td className="py-3 px-3">
+                          <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                            b.bookingStatus === 'Confirmed' ? 'bg-emerald-100 text-emerald-800' :
+                            b.bookingStatus === 'Completed' ? 'bg-brand-100 text-brand-800' :
+                            b.bookingStatus === 'Cancelled' ? 'bg-rose-100 text-rose-800' :
+                            'bg-amber-100 text-amber-800'
+                          }`}>
+                            {b.bookingStatus || 'Pending'}
+                          </span>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={6} className="py-12 text-center text-slate-400">
+                        <div className="flex flex-col items-center justify-center gap-1.5">
+                          <CalendarCheck className="w-8 h-8 text-slate-300 stroke-1" />
+                          <p className="text-xs font-semibold text-slate-600">No Bookings Received Yet</p>
+                          <p className="text-[11px] text-slate-400">Customer bookings submitted through the portal will appear here.</p>
+                        </div>
                       </td>
                     </tr>
-                  ))}
+                  )}
                 </tbody>
               </table>
             </div>
@@ -569,25 +558,33 @@ export const Dashboard = () => {
             </div>
 
             <div className="space-y-3">
-              {recentInquiries.map((inq) => (
-                <div key={inq._id} className="p-3.5 rounded-xl bg-slate-50 border border-slate-100 hover:border-brand-200 transition-colors">
-                  <div className="flex items-center justify-between mb-1">
-                    <h4 className="text-xs font-bold text-navy-900 truncate">{inq.name}</h4>
-                    <span className={`text-[9px] px-2 py-0.5 rounded-full font-bold ${
-                      inq.status === 'Resolved' ? 'bg-emerald-100 text-emerald-800' :
-                      inq.status === 'Contacted' ? 'bg-sky-100 text-sky-800' :
-                      'bg-amber-100 text-amber-800'
-                    }`}>
-                      {inq.status || 'New Lead'}
-                    </span>
+              {recentInquiries.length > 0 ? (
+                recentInquiries.map((inq) => (
+                  <div key={inq._id} className="p-3.5 rounded-xl bg-slate-50 border border-slate-100 hover:border-brand-200 transition-colors">
+                    <div className="flex items-center justify-between mb-1">
+                      <h4 className="text-xs font-bold text-navy-900 truncate">{inq.name}</h4>
+                      <span className={`text-[9px] px-2 py-0.5 rounded-full font-bold ${
+                        inq.status === 'Resolved' ? 'bg-emerald-100 text-emerald-800' :
+                        inq.status === 'Contacted' ? 'bg-sky-100 text-sky-800' :
+                        'bg-amber-100 text-amber-800'
+                      }`}>
+                        {inq.status || 'New Lead'}
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-slate-600 line-clamp-2 mt-1 leading-relaxed">{inq.message || inq.subject}</p>
+                    <div className="flex items-center justify-between mt-2 pt-2 border-t border-slate-200/50 text-[10px] text-slate-400">
+                      <span className="font-mono text-slate-600 font-semibold">{inq.phone || 'Phone verified'}</span>
+                      <span>{inq.createdAt ? formatDate(inq.createdAt) : 'Today'}</span>
+                    </div>
                   </div>
-                  <p className="text-[11px] text-slate-600 line-clamp-2 mt-1 leading-relaxed">{inq.message || inq.subject}</p>
-                  <div className="flex items-center justify-between mt-2 pt-2 border-t border-slate-200/50 text-[10px] text-slate-400">
-                    <span className="font-mono text-slate-600 font-semibold">{inq.phone || 'Phone verified'}</span>
-                    <span>{inq.createdAt ? formatDate(inq.createdAt) : 'Today'}</span>
-                  </div>
+                ))
+              ) : (
+                <div className="py-10 text-center text-slate-400 rounded-xl bg-slate-50 border border-dashed border-slate-200">
+                  <MessageSquare className="w-8 h-8 text-slate-300 mx-auto stroke-1 mb-1.5" />
+                  <p className="text-xs font-semibold text-slate-600">No Inquiries Yet</p>
+                  <p className="text-[11px] text-slate-400 max-w-[200px] mx-auto">Customer queries submitted from the website will appear here.</p>
                 </div>
-              ))}
+              )}
             </div>
           </div>
 

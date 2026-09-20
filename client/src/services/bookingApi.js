@@ -2,81 +2,54 @@ import axiosClient from './axiosClient';
 
 const STORAGE_KEY = 'rtt_custom_bookings';
 
-const defaultBookings = [
-  {
-    _id: 'bk-1',
-    bookingNumber: 'RTT-2026-108',
-    customerName: 'Aarav Sharma',
-    phone: '+91 98160 44211',
-    email: 'aarav.sharma@gmail.com',
-    service: 'Dharamshala - Dalhousie (4 Days)',
-    vehicleType: 'Innova Crysta (7+1)',
-    totalAmount: 18500,
-    bookingStatus: 'Confirmed',
-    travelDate: new Date(Date.now() + 86400000 * 2).toISOString(),
-    createdAt: new Date().toISOString()
-  },
-  {
-    _id: 'bk-2',
-    bookingNumber: 'RTT-2026-109',
-    customerName: 'Vikram Malhotra',
-    phone: '+91 98721 88390',
-    email: 'vikram.m@gmail.com',
-    service: 'Manali - Rohtang Pass Special',
-    vehicleType: 'Toyota Fortuner 4x4',
-    totalAmount: 26000,
-    bookingStatus: 'Confirmed',
-    travelDate: new Date(Date.now() + 86400000 * 4).toISOString(),
-    createdAt: new Date(Date.now() - 3600000 * 18).toISOString()
-  },
-  {
-    _id: 'bk-3',
-    bookingNumber: 'RTT-2026-110',
-    customerName: 'Priya Sundaram',
-    phone: '+91 94180 55122',
-    email: 'priya.sundaram@yahoo.com',
-    service: 'Shimla - Kufri - Narkanda Tour',
-    vehicleType: 'Maruti Suzuki Dzire',
-    totalAmount: 12000,
-    bookingStatus: 'Confirmed',
-    travelDate: new Date(Date.now() + 86400000 * 6).toISOString(),
-    createdAt: new Date(Date.now() - 86400000).toISOString()
-  },
-  {
-    _id: 'bk-4',
-    bookingNumber: 'RTT-2026-111',
-    customerName: 'Sunil Mehta',
-    phone: '+91 98051 33290',
-    email: 'sunil.mehta@corp.in',
-    service: 'Chandigarh to Kangra One-Way Drop',
-    vehicleType: 'Maruti Suzuki Ertiga',
-    totalAmount: 7500,
-    bookingStatus: 'Completed',
-    travelDate: new Date(Date.now() - 86400000 * 2).toISOString(),
-    createdAt: new Date(Date.now() - 86400000 * 3).toISOString()
-  },
-  {
-    _id: 'bk-5',
-    bookingNumber: 'RTT-2026-112',
-    customerName: 'Dr. Rajesh Khanna',
-    phone: '+91 98165 77102',
-    email: 'rajesh.khanna@med.org',
-    service: 'Kangra Valley & Bir Paragliding Tour',
-    vehicleType: 'Innova Hycross Hybrid',
-    totalAmount: 15500,
-    bookingStatus: 'Pending',
-    travelDate: new Date(Date.now() + 86400000 * 8).toISOString(),
-    createdAt: new Date(Date.now() - 86400000 * 4).toISOString()
-  }
-];
+const defaultBookings = [];
+
+const FAKE_BOOKING_IDS = new Set(['bk-1', 'bk-2', 'bk-3', 'bk-4', 'bk-5']);
+const FAKE_BOOKING_NUMBERS = new Set([
+  'rtt-2026-108',
+  'rtt-2026-109',
+  'rtt-2026-110',
+  'rtt-2026-111',
+  'rtt-2026-112'
+]);
+const FAKE_BOOKING_NAMES = new Set([
+  'aarav sharma',
+  'vikram malhotra',
+  'priya sundaram',
+  'sunil mehta',
+  'dr. rajesh khanna',
+  'rajesh khanna'
+]);
+const FAKE_BOOKING_EMAILS = new Set([
+  'aarav.sharma@gmail.com',
+  'vikram.m@gmail.com',
+  'priya.sundaram@yahoo.com',
+  'sunil.mehta@corp.in',
+  'rajesh.khanna@med.org'
+]);
+
+export const isFakeBooking = (b) => {
+  if (!b) return true;
+  if (b._id && FAKE_BOOKING_IDS.has(b._id.toLowerCase())) return true;
+  if (b.bookingNumber && FAKE_BOOKING_NUMBERS.has(b.bookingNumber.toLowerCase())) return true;
+  const customer = (b.customerName || b.user?.name || '').toLowerCase().trim();
+  if (customer && FAKE_BOOKING_NAMES.has(customer)) return true;
+  const email = (b.email || b.user?.email || '').toLowerCase().trim();
+  if (email && FAKE_BOOKING_EMAILS.has(email)) return true;
+  return false;
+};
 
 const getLocalBookings = () => {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       const parsed = JSON.parse(saved);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        return parsed;
+      if (Array.isArray(parsed)) {
+        const cleaned = parsed.filter(b => !isFakeBooking(b));
+        if (cleaned.length !== parsed.length) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(cleaned));
+        }
+        return cleaned;
       }
     }
   } catch (e) {
@@ -87,8 +60,9 @@ const getLocalBookings = () => {
 
 const saveLocalBookings = (list) => {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-    window.dispatchEvent(new CustomEvent('rtt_bookings_updated', { detail: list }));
+    const cleaned = (list || []).filter(b => !isFakeBooking(b));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cleaned));
+    window.dispatchEvent(new CustomEvent('rtt_bookings_updated', { detail: cleaned }));
   } catch (e) {
     console.warn('Error saving local bookings:', e);
   }
@@ -115,17 +89,20 @@ export const bookingApi = {
   },
 
   getAll: async (params = {}) => {
+    let list = [];
     try {
       const res = await axiosClient.get('/bookings', { params });
-      if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
+      if (res && res.success && Array.isArray(res.data)) {
+        const remoteCleaned = res.data.filter(b => !isFakeBooking(b));
         const local = getLocalBookings();
-        const extraLocal = local.filter(b => !res.data.some(remote => remote._id === b._id));
-        const merged = [...extraLocal, ...res.data];
-        return { success: true, data: merged, pagination: { total: merged.length, totalPages: 1, page: 1 } };
+        const extraLocal = local.filter(b => !remoteCleaned.some(remote => remote._id === b._id));
+        list = [...extraLocal, ...remoteCleaned];
+      } else {
+        list = getLocalBookings();
       }
-    } catch (err) {}
-
-    let list = getLocalBookings();
+    } catch (err) {
+      list = getLocalBookings();
+    }
     if (params.status && params.status !== 'All') {
       list = list.filter(b => b.bookingStatus?.toLowerCase() === params.status?.toLowerCase());
     }

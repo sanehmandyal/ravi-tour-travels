@@ -827,29 +827,8 @@ const seedDB = async () => {
     console.log('[Seed] Seeded Services');
 
     // 10. Sample Inquiries
-    const inquiriesData = [
-      {
-        name: 'Siddharth Saxena',
-        email: 'siddharth@example.com',
-        phone: '+91 98877 66554',
-        subject: 'Custom Family Tour for 6 adults to Manali & Shimla',
-        message: 'Looking for a 6-day private Innova package for elderly parents in late October. Need elevator hotels.',
-        destination: 'Manali',
-        status: 'New'
-      },
-      {
-        name: 'Ananya Sharma',
-        email: 'ananya.s@example.com',
-        phone: '+91 97766 55443',
-        subject: 'Honeymoon in Kashmir in November',
-        message: 'Interested in Dal Lake houseboat and Gulmarg Gondola Phase 2. Please share budget quote.',
-        destination: 'Kashmir',
-        status: 'Contacted'
-      }
-    ];
-
-    await Inquiry.insertMany(inquiriesData);
-    console.log('[Seed] Seeded Inquiries');
+    // No fake inquiries seeded - inquiries start clean for real customer inquiries
+    console.log('[Seed] Inquiries left empty for genuine customer inquiries');
 
     await WebsiteSetting.create({
       companyName: 'Ravi Tour & Travels',

@@ -148,13 +148,17 @@ export const getBookingById = async (req, res, next) => {
   }
 };
 
+const FAKE_BOOKING_NUMS = ['RTT-2026-108', 'RTT-2026-109', 'RTT-2026-110', 'RTT-2026-111', 'RTT-2026-112'];
+
 // @desc    Get all bookings (Admin)
 // @route   GET /api/bookings
 // @access  Private/Admin
 export const getAllBookings = async (req, res, next) => {
   try {
     const { status, search, page = 1, limit = 10 } = req.query;
-    const query = {};
+    const query = {
+      bookingNumber: { $nin: FAKE_BOOKING_NUMS }
+    };
 
     if (status && status !== 'All') {
       query.bookingStatus = status;

@@ -2,46 +2,44 @@ import axiosClient from './axiosClient';
 
 const STORAGE_KEY = 'rtt_custom_inquiries';
 
-const defaultInquiries = [
-  {
-    _id: 'inq-1',
-    name: 'Amitabh Deshmukh',
-    phone: '+91 98200 44910',
-    email: 'amitabh.d@gmail.com',
-    subject: 'Spiti Valley 6-Day Tour',
-    message: 'Need 12-seater Tempo Traveller for 6 days family trip to Spiti Valley & Kinnaur. Please share quote.',
-    status: 'Contacted',
-    createdAt: new Date(Date.now() - 3600000 * 5).toISOString()
-  },
-  {
-    _id: 'inq-2',
-    name: 'Neha Kapoor',
-    phone: '+91 97112 55901',
-    email: 'neha.k@outlook.com',
-    subject: 'Airport Pickup to McLeodGanj',
-    message: 'Looking for Innova Crysta pickup from Gaggal Airport to McLeodGanj and local sightseeing.',
-    status: 'New',
-    createdAt: new Date(Date.now() - 3600000 * 12).toISOString()
-  },
-  {
-    _id: 'inq-3',
-    name: 'Col. Sanjeev Nair',
-    phone: '+91 94191 22849',
-    email: 'sanjeev.nair@indianarmy.in',
-    subject: 'Complete Himachal 8 Days Tour',
-    message: 'Complete Himachal 8 days tour inquiry for 4 adults (Dharamshala, Manali, Shimla).',
-    status: 'Resolved',
-    createdAt: new Date(Date.now() - 86400000).toISOString()
-  }
-];
+const defaultInquiries = [];
+
+const FAKE_INQUIRY_IDS = new Set(['inq-1', 'inq-2', 'inq-3']);
+const FAKE_INQUIRY_NAMES = new Set([
+  'amitabh deshmukh',
+  'neha kapoor',
+  'col. sanjeev nair',
+  'sanjeev nair',
+  'siddharth saxena',
+  'ananya sharma'
+]);
+const FAKE_INQUIRY_EMAILS = new Set([
+  'amitabh.d@gmail.com',
+  'neha.k@outlook.com',
+  'sanjeev.nair@indianarmy.in',
+  'siddharth@example.com',
+  'ananya.s@example.com'
+]);
+
+export const isFakeInquiry = (i) => {
+  if (!i) return true;
+  if (i._id && FAKE_INQUIRY_IDS.has(i._id.toLowerCase())) return true;
+  if (i.name && FAKE_INQUIRY_NAMES.has(i.name.toLowerCase().trim())) return true;
+  if (i.email && FAKE_INQUIRY_EMAILS.has(i.email.toLowerCase().trim())) return true;
+  return false;
+};
 
 const getLocalInquiries = () => {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       const parsed = JSON.parse(saved);
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        return parsed;
+      if (Array.isArray(parsed)) {
+        const cleaned = parsed.filter(i => !isFakeInquiry(i));
+        if (cleaned.length !== parsed.length) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(cleaned));
+        }
+        return cleaned;
       }
     }
   } catch (e) {
@@ -52,8 +50,9 @@ const getLocalInquiries = () => {
 
 const saveLocalInquiries = (list) => {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-    window.dispatchEvent(new CustomEvent('rtt_inquiries_updated', { detail: list }));
+    const cleaned = (list || []).filter(i => !isFakeInquiry(i));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cleaned));
+    window.dispatchEvent(new CustomEvent('rtt_inquiries_updated', { detail: cleaned }));
   } catch (e) {
     console.warn('Error saving local inquiries:', e);
   }
@@ -80,17 +79,21 @@ export const inquiryApi = {
   },
 
   getAll: async (params = {}) => {
+    let list = [];
     try {
       const res = await axiosClient.get('/inquiries', { params });
-      if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
+      if (res && res.success && Array.isArray(res.data)) {
+        const remoteCleaned = res.data.filter(i => !isFakeInquiry(i));
         const local = getLocalInquiries();
-        const extraLocal = local.filter(i => !res.data.some(b => b._id === i._id));
-        const merged = [...extraLocal, ...res.data];
-        return { success: true, data: merged };
+        const extraLocal = local.filter(i => !remoteCleaned.some(b => b._id === i._id));
+        list = [...extraLocal, ...remoteCleaned];
+      } else {
+        list = getLocalInquiries();
       }
-    } catch (err) {}
+    } catch (err) {
+      list = getLocalInquiries();
+    }
 
-    let list = getLocalInquiries();
     if (params.status && params.status !== 'All') {
       list = list.filter(i => i.status?.toLowerCase() === params.status?.toLowerCase());
     }

@@ -26,13 +26,31 @@ export const createInquiry = async (req, res, next) => {
   }
 };
 
+const FAKE_INQUIRY_EMAILS = [
+  'amitabh.d@gmail.com',
+  'neha.k@outlook.com',
+  'sanjeev.nair@indianarmy.in',
+  'siddharth@example.com',
+  'ananya.s@example.com'
+];
+const FAKE_INQUIRY_NAMES = [
+  'Amitabh Deshmukh',
+  'Neha Kapoor',
+  'Col. Sanjeev Nair',
+  'Siddharth Saxena',
+  'Ananya Sharma'
+];
+
 // @desc    Get all inquiries (Admin)
 // @route   GET /api/inquiries
 // @access  Private/Admin
 export const getInquiries = async (req, res, next) => {
   try {
     const { status, search, page = 1, limit = 15 } = req.query;
-    const query = {};
+    const query = {
+      email: { $nin: FAKE_INQUIRY_EMAILS },
+      name: { $nin: FAKE_INQUIRY_NAMES }
+    };
 
     if (status && status !== 'All') {
       query.status = status;

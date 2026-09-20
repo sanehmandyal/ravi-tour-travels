@@ -12,6 +12,22 @@ import { handleImageUpload } from '../services/cloudinaryService.js';
 // @access  Private/Admin
 export const getDashboardStats = async (req, res, next) => {
   try {
+    const FAKE_BOOKING_NUMS = ['RTT-2026-108', 'RTT-2026-109', 'RTT-2026-110', 'RTT-2026-111', 'RTT-2026-112'];
+    const FAKE_INQUIRY_EMAILS = [
+      'amitabh.d@gmail.com',
+      'neha.k@outlook.com',
+      'sanjeev.nair@indianarmy.in',
+      'siddharth@example.com',
+      'ananya.s@example.com'
+    ];
+    const FAKE_INQUIRY_NAMES = [
+      'Amitabh Deshmukh',
+      'Neha Kapoor',
+      'Col. Sanjeev Nair',
+      'Siddharth Saxena',
+      'Ananya Sharma'
+    ];
+
     const [
       totalBookings,
       pendingBookings,
@@ -26,18 +42,24 @@ export const getDashboardStats = async (req, res, next) => {
       recentBookings,
       recentInquiries
     ] = await Promise.all([
-      Booking.countDocuments(),
-      Booking.countDocuments({ bookingStatus: 'Pending' }),
-      Booking.countDocuments({ bookingStatus: 'Confirmed' }),
-      Booking.countDocuments({ bookingStatus: 'Completed' }),
-      Booking.countDocuments({ bookingStatus: 'Cancelled' }),
+      Booking.countDocuments({ bookingNumber: { $nin: FAKE_BOOKING_NUMS } }),
+      Booking.countDocuments({ bookingStatus: 'Pending', bookingNumber: { $nin: FAKE_BOOKING_NUMS } }),
+      Booking.countDocuments({ bookingStatus: 'Confirmed', bookingNumber: { $nin: FAKE_BOOKING_NUMS } }),
+      Booking.countDocuments({ bookingStatus: 'Completed', bookingNumber: { $nin: FAKE_BOOKING_NUMS } }),
+      Booking.countDocuments({ bookingStatus: 'Cancelled', bookingNumber: { $nin: FAKE_BOOKING_NUMS } }),
       User.countDocuments({ role: 'user' }),
       Package.countDocuments(),
       Destination.countDocuments(),
-      Inquiry.countDocuments(),
+      Inquiry.countDocuments({
+        email: { $nin: FAKE_INQUIRY_EMAILS },
+        name: { $nin: FAKE_INQUIRY_NAMES }
+      }),
       Booking.aggregate([
         {
-          $match: { bookingStatus: { $in: ['Confirmed', 'Completed', 'Pending'] } }
+          $match: {
+            bookingStatus: { $in: ['Confirmed', 'Completed', 'Pending'] },
+            bookingNumber: { $nin: FAKE_BOOKING_NUMS }
+          }
         },
         {
           $group: {
@@ -46,11 +68,14 @@ export const getDashboardStats = async (req, res, next) => {
           }
         }
       ]),
-      Booking.find()
+      Booking.find({ bookingNumber: { $nin: FAKE_BOOKING_NUMS } })
         .populate('package', 'title')
         .sort({ createdAt: -1 })
         .limit(5),
-      Inquiry.find()
+      Inquiry.find({
+        email: { $nin: FAKE_INQUIRY_EMAILS },
+        name: { $nin: FAKE_INQUIRY_NAMES }
+      })
         .sort({ createdAt: -1 })
         .limit(5)
     ]);
@@ -65,7 +90,8 @@ export const getDashboardStats = async (req, res, next) => {
     const monthlyTrends = await Booking.aggregate([
       {
         $match: {
-          createdAt: { $gte: sixMonthsAgo }
+          createdAt: { $gte: sixMonthsAgo },
+          bookingNumber: { $nin: FAKE_BOOKING_NUMS }
         }
       },
       {
@@ -123,14 +149,7 @@ export const getDashboardStats = async (req, res, next) => {
           completedBookings,
           cancelledBookings
         },
-        monthlyTrends: formattedTrends.length > 0 ? formattedTrends : [
-          { name: 'Jan', bookings: 4, revenue: 95000 },
-          { name: 'Feb', bookings: 7, revenue: 165000 },
-          { name: 'Mar', bookings: 12, revenue: 310000 },
-          { name: 'Apr', bookings: 18, revenue: 460000 },
-          { name: 'May', bookings: 24, revenue: 620000 },
-          { name: 'Jun', bookings: 32, revenue: 840000 }
-        ],
+        monthlyTrends: formattedTrends,
         statusDistribution,
         popularDestinations: popularDestinations.map(d => ({
           name: d._id || 'Himachal',
