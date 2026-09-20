@@ -3,13 +3,29 @@ import { defaultCars } from '../data/defaultCars';
 
 const STORAGE_KEY = 'rtt_custom_cars';
 
+const enrichCarWithExactImage = (car) => {
+  if (!car) return car;
+  const match = defaultCars.find(
+    dc => dc._id === car._id || (dc.name && car.name && dc.name.toLowerCase().includes(car.name.toLowerCase().split(' ')[0]))
+  );
+  if (match) {
+    // If the car image is missing or is an old unsplash generic stock photo, replace with exact authentic photo
+    const isOldGenericImage = !car.image || car.image.includes('images.unsplash.com');
+    return {
+      ...car,
+      image: isOldGenericImage ? match.image : car.image
+    };
+  }
+  return car;
+};
+
 const getLocalCars = () => {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       const parsed = JSON.parse(saved);
       if (Array.isArray(parsed) && parsed.length > 0) {
-        return parsed;
+        return parsed.map(enrichCarWithExactImage);
       }
     }
   } catch (e) {
@@ -34,13 +50,13 @@ export const carApi = {
       if (res && res.success && Array.isArray(res.data) && res.data.length > 0) {
         // If local storage has admin modifications, merge them so custom edits are preserved
         const local = getLocalCars();
-        const customIds = new Set(local.map(c => c._id));
         // Keep any custom created cars that may not exist in backend
         const extraLocal = local.filter(c => !res.data.some(b => b._id === c._id));
         const merged = [...res.data.map(b => {
           const localMatch = local.find(l => l._id === b._id);
-          return localMatch ? { ...b, ...localMatch } : b;
-        }), ...extraLocal];
+          const item = localMatch ? { ...b, ...localMatch } : b;
+          return enrichCarWithExactImage(item);
+        }), ...extraLocal.map(enrichCarWithExactImage)];
         return { success: true, data: merged };
       }
     } catch (err) {
@@ -60,21 +76,21 @@ export const carApi = {
       );
     }
 
-    return { success: true, data: list };
+    return { success: true, data: list.map(enrichCarWithExactImage) };
   },
 
   getById: async (id) => {
     try {
       const res = await axiosClient.get(`/cars/${id}`);
       if (res && res.success && res.data) {
-        return res;
+        return { success: true, data: enrichCarWithExactImage(res.data) };
       }
     } catch (err) {}
 
     const list = getLocalCars();
     const found = list.find(c => c._id === id);
     if (found) {
-      return { success: true, data: found };
+      return { success: true, data: enrichCarWithExactImage(found) };
     }
     return { success: false, message: 'Vehicle not found' };
   },

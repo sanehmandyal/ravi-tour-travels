@@ -58,14 +58,14 @@ const runSeed = async () => {
       region: 'Himalayas',
       shortDescription: 'The "Mini Switzerland of India" featuring dense deodar forests, colonial bungalows, and saucer-shaped emerald meadows.',
       description: 'Spread over five scenic hills, Dalhousie is famed for its vintage Scottish architecture, tranquil pine-scented promenades, and old stone churches. A short scenic drive away lies Khajjiar, a breathtaking saucer-shaped green meadow ringed by tall cedars with a pristine lake at its center, famously officially christened "Mini Switzerland".',
-      heroImage: 'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=1600&q=80',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=1200',
       gallery: [
-        'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=800',
+        'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=800&q=80'
       ],
       attractions: [
-        { title: 'Khajjiar Lake & Meadow', description: 'Lush alpine meadow with cedar trees, floating island, and 12th-century Khajji Nag temple.', image: 'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=600&q=80' },
-        { title: 'Dainkund Peak', description: 'Highest point in Dalhousie offering 360-degree views of snow peaks and valley rivers.', image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80' },
+        { title: 'Khajjiar Lake & Meadow', description: 'Lush alpine meadow with cedar trees, floating island, and 12th-century Khajji Nag temple.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Khajjiar_lake.jpg?width=600' },
+        { title: 'Dainkund Peak', description: 'Highest point in Dalhousie offering 360-degree views of snow peaks and valley rivers.', image: 'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=600&q=80' },
         { title: 'Kalatop Wildlife Sanctuary', description: 'Thick deodar woodlands home to barking deer and exotic Himalayan birds.', image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80' }
       ],
       thingsToDo: [
@@ -112,13 +112,13 @@ const runSeed = async () => {
       region: 'Himalayas',
       shortDescription: 'The Queen of Hills with charming British colonial heritage, UNESCO Toy Train, and scenic Mall Road.',
       description: 'Shimla, the former summer capital of British India, retains timeless colonial elegance. Surrounded by oak and deodar forests, Shimla is famed for its iconic Ridge, Christ Church, the UNESCO World Heritage Toy Train, and lush apple orchards and snow points in Kufri.',
-      heroImage: 'https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=1600&q=80',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_Shimla.jpg?width=1200',
       gallery: [
-        'https://images.unsplash.com/photo-1562979314-bee7453e911c?auto=format&fit=crop&w=800&q=80',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_Shimla.jpg?width=800',
         'https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=800&q=80'
       ],
       attractions: [
-        { title: 'The Ridge & Mall Road', description: 'The cultural center with neo-Gothic Christ Church and Himalayan valley views.', image: 'https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=600&q=80' },
+        { title: 'The Ridge & Mall Road', description: 'The cultural center with neo-Gothic Christ Church and Himalayan valley views.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Christ_Church_Shimla.jpg?width=600' },
         { title: 'Kufri Snow Point & Nature Park', description: 'Winter wonderland for horse riding, yak rides, and tobogganing.', image: 'https://images.unsplash.com/photo-1562979314-bee7453e911c?auto=format&fit=crop&w=600&q=80' }
       ],
       thingsToDo: [
@@ -138,13 +138,13 @@ const runSeed = async () => {
       region: 'Himalayas',
       shortDescription: 'World-famous Paragliding Capital of India with high-altitude take-offs, Tibetan monasteries, and organic tea estates.',
       description: 'Ranked as the 2nd best site in the world for paragliding, Bir Billing is an international adventure haven. Take off from the dizzying ridge of Billing (8,000 ft) and glide effortlessly over the breathtaking Kangra Valley before touching down smoothly in Bir. Explore Tibetan settlements, peaceful monasteries, and lush green tea gardens.',
-      heroImage: 'https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=1600&q=80',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bir-Billing.jpg?width=1200',
       gallery: [
-        'https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1530866495561-507c9faab2ed?auto=format&fit=crop&w=800&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Bir-Billing.jpg?width=800',
+        'https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=800&q=80'
       ],
       attractions: [
-        { title: 'Billing Take-Off Point', description: 'Launchpad at 2,400 meters offering panoramic aerial views of Kangra.', image: 'https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=600&q=80' },
+        { title: 'Billing Take-Off Point', description: 'Launchpad at 2,400 meters offering panoramic aerial views of Kangra.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bir-Billing.jpg?width=600' },
         { title: 'Chokling Monastery', description: 'Magnificent Tibetan Buddhist monastery with a grand stupa.', image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80' },
         { title: 'Baijnath Temple', description: 'Ancient 13th-century stone Nagara-style temple dedicated to Lord Shiva.', image: 'https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=600&q=80' }
       ],
@@ -165,13 +165,13 @@ const runSeed = async () => {
       region: 'Himalayas',
       shortDescription: 'The Middle Land with stark cold desert moonscapes, 1000-year-old Key Monastery, and azure Chandratal Lake.',
       description: 'Separating India from Tibet, Spiti Valley is a dramatic high-altitude desert kingdom. Marvel at the ancient Key Monastery perched on a conical hill, send a letter from Hikkim (the world’s highest post office), gaze at dinosaur fossils in Langza, and camp near the crescent Moon Lake (Chandratal).',
-      heroImage: 'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=1600&q=80',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Key_Monastery,_Himachal_Pradesh.jpg?width=1200',
       gallery: [
-        'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Key_Monastery,_Himachal_Pradesh.jpg?width=800',
+        'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=800&q=80'
       ],
       attractions: [
-        { title: 'Key Gompa Monastery', description: 'Historic fortress-like Tibetan Buddhist monastery over 1,000 years old.', image: 'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=600&q=80' },
+        { title: 'Key Gompa Monastery', description: 'Historic fortress-like Tibetan Buddhist monastery over 1,000 years old.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Key_Monastery,_Himachal_Pradesh.jpg?width=600' },
         { title: 'Chandratal Lake (Moon Lake)', description: 'Turquoise glacial lake at 14,100 ft reflecting towering mountain crests.', image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80' },
         { title: 'Hikkim & Komic Villages', description: 'World’s highest post office and motorable village.', image: 'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=600&q=80' }
       ],
@@ -192,13 +192,13 @@ const runSeed = async () => {
       region: 'Himalayas',
       shortDescription: 'Riverside mountain cafes, hot sulphur springs of Manikaran, apple orchards of Tosh, and Kheerganga trails.',
       description: 'Cradled in the lush Parvati Valley, Kasol is a tranquil riverside haven famous for fresh mountain air, vibrant bohemian cafes, and pine forest walks along the churning Parvati river. Nearby lies holy Manikaran with its natural thermal springs and historic Gurudwara, and the rustic cliffside village of Tosh.',
-      heroImage: 'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=1600&q=80',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Lake.jpg?width=1200',
       gallery: [
-        'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Lake.jpg?width=800',
+        'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=800&q=80'
       ],
       attractions: [
-        { title: 'Manikaran Sahib Gurudwara & Hot Springs', description: 'Sacred thermal sulphur springs that cook rice and heal ailments.', image: 'https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=600&q=80' },
+        { title: 'Manikaran Sahib Gurudwara & Hot Springs', description: 'Sacred thermal sulphur springs that cook rice and heal ailments.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Manikaran_Lake.jpg?width=600' },
         { title: 'Tosh Village & Waterfall', description: 'Traditional wooden Himachali village with staggering views of snow peaks.', image: 'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=600&q=80' }
       ],
       thingsToDo: [
@@ -293,13 +293,13 @@ const runSeed = async () => {
       region: 'Himalayas',
       shortDescription: 'Historic Kangra Fort, Brajeshwari Devi, Jawalaji eternal flame temple, Chamunda Devi, and Masroor Rock Cut Temple.',
       description: 'Kangra is the cultural and historical cradle of Himachal Pradesh. Home to powerful 51 Shaktipeeths including Brajeshwari Devi Kangra, Jawalamukhi (where sacred blue flames burn perpetually without fuel), Chamunda Devi, and Baglamukhi temple, along with the magnificent 1,000-year-old Kangra Fort and Masroor Rock-cut Monolithic Temples.',
-      heroImage: 'https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=1600&q=80',
+      heroImage: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=1200',
       gallery: [
-        'https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=800&q=80'
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=800'
       ],
       attractions: [
-        { title: 'Kangra Fort', description: 'The oldest surviving fort in the Himalayas with royal gates and museum.', image: 'https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=600&q=80' },
-        { title: 'Jawalamukhi Shaktipeeth', description: 'Sacred temple where eternal natural flames have burned for centuries.', image: 'https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=600&q=80' },
+        { title: 'Kangra Fort', description: 'The oldest surviving fort in the Himalayas with royal gates and museum.', image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kangra_Fort_Himachal_Pradesh.jpg?width=600' },
+        { title: 'Jawalamukhi Shaktipeeth', description: 'Sacred temple where eternal natural flames have burned for centuries.', image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80' },
         { title: 'Masroor Rock Cut Temple', description: 'Known as the Ellora of the North, 8th-century monolithic stone shrines.', image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80' }
       ],
       thingsToDo: [
@@ -757,7 +757,7 @@ const runSeed = async () => {
       seatingCapacity: '6 + 1 Seats',
       luggageCapacity: '4 Large Bags',
       fuelType: 'Diesel',
-      image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Innova_Crysta_2.4_Z_front_right.jpg?width=800',
       features: [
         'Dual AC & Climate Control',
         'Roof Carrier for Extra Luggage',
@@ -773,7 +773,7 @@ const runSeed = async () => {
       seatingCapacity: '6 + 1 Seats',
       luggageCapacity: '4 Large Bags',
       fuelType: 'Hybrid / Petrol',
-      image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/2023_Toyota_Kijang_Innova_Zenix_2.0_Q_Hybrid_Modellista_(front),_West_Surabaya.jpg?width=800',
       features: [
         'Ottoman Recliner Captain Seats',
         'Dual Zone Chilled Climate Control',
@@ -789,7 +789,7 @@ const runSeed = async () => {
       seatingCapacity: '5 + 1 Seats',
       luggageCapacity: '3 Large Bags',
       fuelType: 'Petrol / Hybrid',
-      image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_Ertiga(2).jpg?width=800',
       features: [
         'Chilled AC with Rear Vents',
         'Comfortable 3-Row Seating',
@@ -805,7 +805,7 @@ const runSeed = async () => {
       seatingCapacity: '4 + 1 Seats',
       luggageCapacity: '2 Large Bags + Handbags',
       fuelType: 'Petrol',
-      image: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/2018_Maruti_Suzuki_Dzire_VXi_front_view.jpg?width=800',
       features: [
         'AC & Cabin Heating',
         'Deep Boot Space',
@@ -821,7 +821,7 @@ const runSeed = async () => {
       seatingCapacity: '4 + 1 Seats',
       luggageCapacity: '3 Large Bags',
       fuelType: 'Diesel / Petrol',
-      image: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Etios_1.5_XLS_Sedan_2019.jpg?width=800',
       features: [
         'Extra Legroom & Shoulder Room',
         'Huge 595L Boot Space',
@@ -837,7 +837,7 @@ const runSeed = async () => {
       seatingCapacity: '4 + 1 Seats',
       luggageCapacity: '2 Medium Bags',
       fuelType: 'Petrol',
-      image: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/2019_Maruti_Suzuki_Wagon_R_1.2_ZXi.jpg?width=800',
       features: [
         'Compact & Nimble on Mountain Roads',
         'Chilled AC & Hill Heater',
@@ -853,7 +853,7 @@ const runSeed = async () => {
       seatingCapacity: '6 + 1 Seats',
       luggageCapacity: '4 Large Bags',
       fuelType: 'Diesel',
-      image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mahindra_Scorpio.jpg?width=800',
       features: [
         '4x4 High Ground Clearance',
         'Rugged All-Terrain Hill Tires',
@@ -869,7 +869,7 @@ const runSeed = async () => {
       seatingCapacity: '6 + 1 Seats',
       luggageCapacity: '5 Large Bags',
       fuelType: 'Diesel',
-      image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Fortuner_2.8_GR_Sport_4x4_2022.jpg?width=800',
       features: [
         '4x4 High-Torque Mountain Engine',
         'Plush Leather Interior',
@@ -885,7 +885,7 @@ const runSeed = async () => {
       seatingCapacity: '10 + 1 Passengers',
       luggageCapacity: '8 Large Bags',
       fuelType: 'Diesel',
-      image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800',
       features: [
         'Individual Aircraft-Style Bucket Seats',
         'Triple AC with Personalized Vents',
@@ -901,7 +901,7 @@ const runSeed = async () => {
       seatingCapacity: '12 + 1 Passengers',
       luggageCapacity: 'Rear Boot + Heavy Roof Carrier',
       fuelType: 'Diesel',
-      image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller,_Leh-Manali_Highway.jpg?width=800',
       features: [
         'Reclining Pushback Seats',
         'Individual AC Vents',
@@ -917,7 +917,7 @@ const runSeed = async () => {
       seatingCapacity: '17 + 1 Passengers',
       luggageCapacity: 'Extra Heavy Overhead Carrier',
       fuelType: 'Diesel',
-      image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800',
       features: [
         'Wide Reclining Luxury Seats',
         'Dual High-Capacity AC Units',
@@ -933,7 +933,7 @@ const runSeed = async () => {
       seatingCapacity: '26 + 1 Passengers',
       luggageCapacity: 'Massive Roof Carrier + Rear Space',
       fuelType: 'Diesel',
-      image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller,_Leh-Manali_Highway.jpg?width=800',
       features: [
         '2x2 Pushback Maharaja Seats',
         'Twin High-Powered Cooling Units',

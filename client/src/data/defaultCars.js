@@ -6,7 +6,7 @@ export const defaultCars = [
     seatingCapacity: '7 + 1 Chauffeur',
     luggageCapacity: '3-4 Large Bags + Rooftop Carrier',
     fuelType: 'Diesel',
-    image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Innova_Crysta_2.4_Z_front_right.jpg?width=800',
     features: [
       'Dual Front & Rear Chill AC',
       'Plush Reclining Captain Seats',
@@ -23,7 +23,7 @@ export const defaultCars = [
     seatingCapacity: '7 + 1 Chauffeur',
     luggageCapacity: '4 Large Suitcases',
     fuelType: 'Hybrid',
-    image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/2023_Toyota_Kijang_Innova_Zenix_2.0_Q_Hybrid_Modellista_(front),_West_Surabaya.jpg?width=800',
     features: [
       'Panoramic Sunroof & Ambient Light',
       'Ultra Silent Hybrid Powertrain',
@@ -40,7 +40,7 @@ export const defaultCars = [
     seatingCapacity: '6 + 1 Chauffeur',
     luggageCapacity: '2 Large Bags + Roof Carrier',
     fuelType: 'Petrol / Hybrid',
-    image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_Ertiga(2).jpg?width=800',
     features: [
       'Roof Mounted AC Blower Vents',
       'Modular 3-Row Foldable Seating',
@@ -57,7 +57,7 @@ export const defaultCars = [
     seatingCapacity: '4 + 1 Chauffeur',
     luggageCapacity: '2 Large + 2 Hand Bags',
     fuelType: 'Petrol',
-    image: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/2018_Maruti_Suzuki_Dzire_VXi_front_view.jpg?width=800',
     features: [
       'Effective Auto Climate Control',
       'Deep 378L Boot Trunk Capacity',
@@ -74,7 +74,7 @@ export const defaultCars = [
     seatingCapacity: '4 + 1 Chauffeur',
     luggageCapacity: '3 Large Suitcases (595L Boot)',
     fuelType: 'Diesel / Petrol',
-    image: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Etios_1.5_XLS_Sedan_2019.jpg?width=800',
     features: [
       'Massive 595L Cargo Trunk',
       'Exceptional Rear Seat Legroom',
@@ -91,7 +91,7 @@ export const defaultCars = [
     seatingCapacity: '4 + 1 Chauffeur',
     luggageCapacity: '2 Medium Bags',
     fuelType: 'Petrol',
-    image: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/2019_Maruti_Suzuki_Wagon_R_1.2_ZXi.jpg?width=800',
     features: [
       'Ultra Agile in Tight Mountain Bends',
       'Effective Chilled AC & Hill Heater',
@@ -108,7 +108,7 @@ export const defaultCars = [
     seatingCapacity: '6 + 1 Chauffeur',
     luggageCapacity: '3 Large Bags + Heavy Roof Carrier',
     fuelType: 'Diesel',
-    image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mahindra_Scorpio.jpg?width=800',
     features: [
       'Electronic 4x4 Shift-on-Fly Terrain Modes',
       'High Ground Clearance (200mm)',
@@ -125,7 +125,7 @@ export const defaultCars = [
     seatingCapacity: '6 + 1 Chauffeur',
     luggageCapacity: '4 Large Bags + Rooftop Carrier',
     fuelType: 'Diesel',
-    image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Fortuner_2.8_GR_Sport_4x4_2022.jpg?width=800',
     features: [
       'Commanding Road Presence & VIP Security',
       'Heavy-Duty 4x4 Terrain Management',
@@ -142,7 +142,7 @@ export const defaultCars = [
     seatingCapacity: '10 + 1 Chauffeur',
     luggageCapacity: '8 Large Bags Internal Storage',
     fuelType: 'Diesel',
-    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800',
     features: [
       'Aircraft-Style Individual Recliners',
       'Triple-Blower Roof Climate System',
@@ -159,7 +159,7 @@ export const defaultCars = [
     seatingCapacity: '12 + 1 Chauffeur',
     luggageCapacity: 'Spacious Rear Boot + Heavy Carrier',
     fuelType: 'Diesel',
-    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller,_Leh-Manali_Highway.jpg?width=800',
     features: [
       '1x1 Individual Pushback Plush Seats',
       'Powerful Dual Air-Conditioning Units',
@@ -176,7 +176,7 @@ export const defaultCars = [
     seatingCapacity: '17 + 1 Chauffeur',
     luggageCapacity: 'Extra Heavy Overhead Carrier',
     fuelType: 'Diesel',
-    image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800',
     features: [
       'Wide 2x1 Reclining Luxury Seats',
       'Dual High-Capacity AC Units',
@@ -193,7 +193,7 @@ export const defaultCars = [
     seatingCapacity: '26 + 1 Chauffeur',
     luggageCapacity: 'Massive Roof Carrier + Rear Cargo Bay',
     fuelType: 'Diesel',
-    image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller,_Leh-Manali_Highway.jpg?width=800',
     features: [
       '2x2 High-Comfort Pushback Seats',
       'Twin High-Powered AC & Heating System',

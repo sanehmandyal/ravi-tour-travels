@@ -21,7 +21,7 @@ const seedCars = async () => {
       fuelType: 'Diesel',
       ratePerKm: 16,
       rateDaily: 4000,
-      image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Toyota_Innova_Crysta_2.4_Z_front_right.jpg?width=800',
       features: [
         'Dual AC & Climate Control',
         'Roof Carrier for Extra Luggage',
@@ -42,7 +42,7 @@ const seedCars = async () => {
       fuelType: 'Petrol / Hybrid',
       ratePerKm: 13,
       rateDaily: 3200,
-      image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Maruti_Suzuki_Ertiga(2).jpg?width=800',
       features: [
         'Chilled AC with Rear Vents',
         'Comfortable 3-Row Seating',
@@ -62,7 +62,7 @@ const seedCars = async () => {
       fuelType: 'Petrol',
       ratePerKm: 11,
       rateDaily: 2400,
-      image: 'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/2018_Maruti_Suzuki_Dzire_VXi_front_view.jpg?width=800',
       features: [
         'AC & Rapid Cabin Heating',
         'Deep Boot Space',
@@ -82,7 +82,7 @@ const seedCars = async () => {
       fuelType: 'Diesel',
       ratePerKm: 18,
       rateDaily: 4800,
-      image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mahindra_Scorpio.jpg?width=800',
       features: [
         '4x4 High Ground Clearance',
         'Rugged All-Terrain Hill Tires',
@@ -102,7 +102,7 @@ const seedCars = async () => {
       fuelType: 'Diesel',
       ratePerKm: 24,
       rateDaily: 6500,
-      image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller,_Leh-Manali_Highway.jpg?width=800',
       features: [
         '1x1 & 2x1 Reclining Pushback Seats',
         'Individual AC Vents & Reading Lights',
@@ -122,7 +122,7 @@ const seedCars = async () => {
       fuelType: 'Diesel',
       ratePerKm: 28,
       rateDaily: 7500,
-      image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80',
+      image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Force_Traveller_Luxury.jpg?width=800',
       features: [
         'Wide Reclining Luxury Seats',
         'Dual High-Capacity AC Units',

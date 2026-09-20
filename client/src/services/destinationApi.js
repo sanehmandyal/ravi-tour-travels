@@ -3,13 +3,30 @@ import { defaultDestinations } from '../data/defaultDestinations';
 
 const STORAGE_KEY = 'rtt_custom_destinations';
 
+const enrichDestinationWithExactImage = (dest) => {
+  if (!dest) return dest;
+  const match = defaultDestinations.find(
+    d => d._id === dest._id || d.slug === dest.slug || (d.name && dest.name && d.name.toLowerCase() === dest.name.toLowerCase())
+  );
+  if (match) {
+    const isOldStock = (url) => !url || url.includes('photo-1507525428034-b723cf961d3e') || url.includes('photo-1506744038136-46273834b3fb');
+    return {
+      ...dest,
+      featuredImage: isOldStock(dest.featuredImage) ? match.featuredImage : (dest.featuredImage || match.featuredImage),
+      heroImage: isOldStock(dest.heroImage) ? match.heroImage : (dest.heroImage || match.heroImage),
+      images: Array.isArray(dest.images) && dest.images.length > 0 && !dest.images.some(isOldStock) ? dest.images : match.images
+    };
+  }
+  return dest;
+};
+
 const getLocalDestinations = () => {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       const parsed = JSON.parse(saved);
       if (Array.isArray(parsed) && parsed.length > 0) {
-        return parsed;
+        return parsed.map(enrichDestinationWithExactImage);
       }
     }
   } catch (e) {
@@ -72,7 +89,8 @@ export const destinationApi = {
           ...customItems,
           ...res.data.map(b => {
             const localMatch = local.find(l => l._id === b._id || l.slug === b.slug);
-            return localMatch ? { ...b, ...localMatch } : b;
+            const item = localMatch ? { ...b, ...localMatch } : b;
+            return enrichDestinationWithExactImage(item);
           })
         ];
         const unique = Array.from(new Map(merged.map(item => [item.slug || item._id, item])).values());
@@ -93,7 +111,7 @@ export const destinationApi = {
     const filtered = filterDestinationsLocally(params);
     return {
       success: true,
-      data: filtered,
+      data: filtered.map(enrichDestinationWithExactImage),
       pagination: {
         total: filtered.length,
         page: params.page || 1,
@@ -109,14 +127,15 @@ export const destinationApi = {
       if (res && res.success && res.data) {
         const local = getLocalDestinations();
         const localMatch = local.find(l => l._id === res.data._id || l.slug === res.data.slug);
-        return { success: true, data: localMatch ? { ...res.data, ...localMatch } : res.data };
+        const item = localMatch ? { ...res.data, ...localMatch } : res.data;
+        return { success: true, data: enrichDestinationWithExactImage(item) };
       }
     } catch (err) {}
 
     const list = getLocalDestinations();
     const found = list.find(d => d.slug === slug || d._id === slug);
     if (found) {
-      return { success: true, data: found };
+      return { success: true, data: enrichDestinationWithExactImage(found) };
     }
     return { success: false, message: 'Destination not found' };
   },
@@ -127,14 +146,15 @@ export const destinationApi = {
       if (res && res.success && res.data) {
         const local = getLocalDestinations();
         const localMatch = local.find(l => l._id === res.data._id || l.slug === res.data.slug);
-        return { success: true, data: localMatch ? { ...res.data, ...localMatch } : res.data };
+        const item = localMatch ? { ...res.data, ...localMatch } : res.data;
+        return { success: true, data: enrichDestinationWithExactImage(item) };
       }
     } catch (err) {}
 
     const list = getLocalDestinations();
     const found = list.find(d => d._id === id || d.slug === id);
     if (found) {
-      return { success: true, data: found };
+      return { success: true, data: enrichDestinationWithExactImage(found) };
     }
     return { success: false, message: 'Destination not found' };
   },
