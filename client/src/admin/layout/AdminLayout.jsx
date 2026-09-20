@@ -8,7 +8,6 @@ import {
   CalendarCheck,
   Users,
   BookOpen,
-  Camera,
   MessageSquare,
   HelpCircle,
   Briefcase,
@@ -57,7 +56,6 @@ export const AdminLayout = () => {
     {
       group: 'Content & Media',
       items: [
-        { name: 'Gallery Photos', path: '/admin/gallery', icon: Camera },
         { name: 'Traveler Reviews (Delete)', path: '/admin/reviews', icon: Star },
         { name: 'FAQs', path: '/admin/faqs', icon: HelpCircle }
       ]

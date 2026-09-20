@@ -10,7 +10,6 @@ import PackageDetails from '../pages/PackageDetails';
 import Booking from '../pages/Booking';
 import About from '../pages/About';
 import Services from '../pages/Services';
-import Gallery from '../pages/Gallery';
 import Blog from '../pages/Blog';
 import BlogDetails from '../pages/BlogDetails';
 import Contact from '../pages/Contact';
@@ -36,7 +35,6 @@ import AdminBookings from '../admin/pages/Bookings';
 import AdminUsers from '../admin/pages/Users';
 import AdminBlogs from '../admin/pages/Blogs';
 import BlogForm from '../admin/pages/BlogForm';
-import AdminGallery from '../admin/pages/Gallery';
 import AdminTestimonials from '../admin/pages/Testimonials';
 import AdminInquiries from '../admin/pages/Inquiries';
 import AdminFAQs from '../admin/pages/FAQs';
@@ -87,7 +85,7 @@ export default function AppRoutes() {
         <Route path="blogs/new" element={<BlogForm />} />
         <Route path="blogs/:id/edit" element={<BlogForm />} />
 
-        <Route path="gallery" element={<AdminGallery />} />
+        <Route path="gallery" element={<Navigate to="/admin/dashboard" replace />} />
         <Route path="reviews" element={<AdminTestimonials />} />
         <Route path="testimonials" element={<AdminTestimonials />} />
         <Route path="inquiries" element={<AdminInquiries />} />
@@ -111,7 +109,7 @@ export default function AppRoutes() {
       
       <Route path="/about" element={<PublicLayout><About /></PublicLayout>} />
       <Route path="/services" element={<PublicLayout><Services /></PublicLayout>} />
-      <Route path="/gallery" element={<PublicLayout><Gallery /></PublicLayout>} />
+      <Route path="/gallery" element={<Navigate to="/" replace />} />
       <Route path="/blog" element={<PublicLayout><Blog /></PublicLayout>} />
       <Route path="/blog/:slug" element={<PublicLayout><BlogDetails /></PublicLayout>} />
       <Route path="/contact" element={<PublicLayout><Contact /></PublicLayout>} />

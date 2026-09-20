@@ -152,7 +152,6 @@ export const Footer = () => {
               <li><Link to="/destinations" className="hover:text-white transition-colors">Himachal & Hill Stations</Link></li>
               <li><Link to="/services" className="hover:text-white transition-colors">Luxury Cab Fleet</Link></li>
               <li><Link to="/#reviews" className="hover:text-white transition-colors text-brand-300 font-medium">★ Traveler Reviews</Link></li>
-              <li><Link to="/gallery" className="hover:text-white transition-colors">Travel Photo Gallery</Link></li>
               <li><Link to="/about" className="hover:text-white transition-colors">About Ravi Travels</Link></li>
               <li><Link to="/faq" className="hover:text-white transition-colors">FAQs</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors">Book Cab / Inquire</Link></li>

@@ -15,7 +15,6 @@ import {
   Compass,
   MapPin,
   CalendarCheck,
-  Camera,
   BookOpen,
   HelpCircle,
   Info,
@@ -65,7 +64,6 @@ export const Navbar = () => {
     { name: 'Destinations', path: '/destinations' },
     { name: 'Taxi Service', path: '/services' },
     { name: 'Reviews', path: '/#reviews' },
-    { name: 'Gallery', path: '/gallery' },
     { name: 'About Us', path: '/about' },
     { name: 'FAQs', path: '/faq' },
     { name: 'Contact', path: '/contact' }
@@ -80,7 +78,6 @@ export const Navbar = () => {
     { name: 'Destinations', path: '/destinations', icon: MapPin },
     { name: 'Taxi & Cab Services', path: '/services', icon: Car },
     { name: 'Traveler Reviews', path: '/#reviews', icon: Star },
-    { name: 'Travel Photo Gallery', path: '/gallery', icon: Camera },
     { name: 'About Ravi Travels', path: '/about', icon: Info },
     { name: 'FAQs', path: '/faq', icon: HelpCircle },
     { name: 'Contact & Inquiries', path: '/contact', icon: Send }

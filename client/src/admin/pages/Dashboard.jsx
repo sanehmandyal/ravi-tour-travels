@@ -8,7 +8,6 @@ import {
   TrendingUp,
   Car,
   MapPin,
-  Camera,
   MessageSquare,
   PlusCircle,
   ArrowRight,
@@ -238,12 +237,6 @@ export const Dashboard = () => {
             <Car className="w-4 h-4" /> Manage Fleet (12)
           </button>
           <button
-            onClick={() => navigate('/admin/gallery')}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-bold shadow-xs transition-all"
-          >
-            <Camera className="w-4 h-4" /> Gallery
-          </button>
-          <button
             onClick={() => navigate('/admin/reviews')}
             className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 text-xs font-bold shadow-xs transition-all"
           >
@@ -316,18 +309,21 @@ export const Dashboard = () => {
           </div>
         </div>
 
-        {/* Gallery */}
-        <div className="bg-white rounded-2xl p-5 shadow-soft border border-slate-100 flex flex-col justify-between hover:border-purple-200 transition-colors">
+        {/* Traveler Reviews */}
+        <div
+          onClick={() => navigate('/admin/reviews')}
+          className="bg-white rounded-2xl p-5 shadow-soft border border-slate-100 flex flex-col justify-between hover:border-amber-200 transition-colors cursor-pointer"
+        >
           <div className="flex items-center justify-between mb-3">
-            <div className="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
-              <Camera className="w-4 h-4" />
+            <div className="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+              <Star className="w-4 h-4 fill-amber-400 text-amber-500" />
             </div>
-            <span className="text-[10px] font-bold text-purple-700 bg-purple-50 px-1.5 py-0.5 rounded-md">Live</span>
+            <span className="text-[10px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded-md">5.0 ★</span>
           </div>
           <div>
-            <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Photo Gallery</p>
-            <h3 className="text-2xl font-black text-navy-900">{metrics.totalGalleryPhotos}</h3>
-            <p className="text-[10px] text-purple-600 font-semibold mt-1">High-res photos</p>
+            <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Traveler Reviews</p>
+            <h3 className="text-2xl font-black text-navy-900">46</h3>
+            <p className="text-[10px] text-amber-600 font-semibold mt-1">100% Google verified</p>
           </div>
         </div>
 

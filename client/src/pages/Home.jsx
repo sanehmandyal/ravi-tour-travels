@@ -5,7 +5,6 @@ import FleetPreview from '../components/home/FleetPreview';
 import WhyChooseUs from '../components/home/WhyChooseUs';
 import HowItWorks from '../components/home/HowItWorks';
 import Testimonials from '../components/home/Testimonials';
-import GalleryPreview from '../components/home/GalleryPreview';
 import FinalCTA from '../components/home/FinalCTA';
 
 export const Home = () => {
@@ -17,7 +16,6 @@ export const Home = () => {
       <WhyChooseUs />
       <HowItWorks />
       <Testimonials />
-      <GalleryPreview />
       <FinalCTA />
     </div>
   );
