@@ -70,12 +70,29 @@ export const inquiryApi = {
     const updated = [newInquiry, ...list];
     saveLocalInquiries(updated);
 
+    const adminPhone = '7018088530';
+    const whatsappMsg = `🔔 *NEW TRAVEL INQUIRY*\n` +
+      `👤 *Name:* ${data.name || 'Traveler'}\n` +
+      `📞 *Phone:* ${data.phone || 'Not provided'}\n` +
+      `✉️ *Email:* ${data.email || 'Not provided'}\n` +
+      `📍 *Subject / Destination:* ${data.subject || data.destination || 'General Himachal Tour'}\n` +
+      `💬 *Message:* ${data.message || 'Interested in booking / tour'}\n` +
+      `🌐 *Source:* Ravi Tour & Travels Web Portal`;
+
+    const whatsappUrl = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(whatsappMsg)}`;
+
     try {
       await axiosClient.post('/inquiries', data);
     } catch (e) {
       // Local save preserved
     }
-    return { success: true, message: 'Inquiry submitted successfully!', data: newInquiry };
+    return {
+      success: true,
+      message: 'Inquiry submitted successfully! Admin (+91 70180 88530) linked for notification.',
+      data: newInquiry,
+      adminPhone: '+91 70180 88530',
+      whatsappUrl
+    };
   },
 
   getAll: async (params = {}) => {

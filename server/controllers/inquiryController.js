@@ -5,7 +5,7 @@ import Inquiry from '../models/Inquiry.js';
 // @access  Public
 export const createInquiry = async (req, res, next) => {
   try {
-    const { name, email, phone, message } = req.body;
+    const { name, email, phone, message, subject, destination } = req.body;
 
     if (!name || !email || !phone || !message) {
       return res.status(400).json({
@@ -16,10 +16,24 @@ export const createInquiry = async (req, res, next) => {
 
     const inquiry = await Inquiry.create(req.body);
 
+    const adminPhone = '7018088530';
+    const whatsappNotificationUrl = `https://wa.me/91${adminPhone}?text=${encodeURIComponent(
+      `🔔 *NEW INQUIRY - Ravi Tour & Travels*\n` +
+      `👤 *Customer:* ${name}\n` +
+      `📞 *Phone:* ${phone}\n` +
+      `✉️ *Email:* ${email}\n` +
+      `📍 *Subject / Destination:* ${subject || destination || 'General Himachal Tour'}\n` +
+      `💬 *Message:* ${message}`
+    )}`;
+
+    console.log(`[ADMIN NOTIFICATION DISPATCH] New Inquiry for Admin Contact +91 70180 88530: ${name} (${phone}) - "${message.slice(0, 60)}"`);
+
     res.status(201).json({
       success: true,
-      message: 'Thank you for reaching out! Our travel specialist will contact you shortly.',
-      data: inquiry
+      message: 'Thank you for reaching out! Inquiry is linked with Admin contact (+91 70180 88530).',
+      data: inquiry,
+      adminContact: '+91 70180 88530',
+      adminWhatsAppUrl: whatsappNotificationUrl
     });
   } catch (error) {
     next(error);

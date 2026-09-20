@@ -14,10 +14,14 @@ import {
 } from 'lucide-react';
 import Button from '../components/common/Button';
 import toast from 'react-hot-toast';
+import { PhoneCall, Bell, Sparkles } from 'lucide-react';
 
 export const Contact = () => {
   const { settings } = useWebsite();
   const [searchParams] = useSearchParams();
+
+  const adminPhone = settings?.phone || '70180 88530';
+  const adminRawPhone = '917018088530';
 
   const [formData, setFormData] = useState({
     name: '',
@@ -34,25 +38,46 @@ export const Contact = () => {
 
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [lastInquiry, setLastInquiry] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const getAdminWhatsAppLink = (data) => {
+    const text = `🔔 *NEW TRAVEL INQUIRY - Ravi Tour & Travels*\n` +
+      `👤 *Customer Name:* ${data.name || 'Traveler'}\n` +
+      `📞 *Customer Phone:* ${data.phone || 'Not provided'}\n` +
+      `✉️ *Email:* ${data.email || 'Not provided'}\n` +
+      `📍 *Subject / Destination:* ${data.subject || data.destination || 'Himachal Tour'}\n` +
+      `💬 *Message / Requirement:* ${data.message || 'Custom tour quote needed'}\n` +
+      `🌐 *Source:* Ravi Tour & Travels Website`;
+    return `https://wa.me/${adminRawPhone}?text=${encodeURIComponent(text)}`;
+  };
+
+  const handleSubmit = async (e, directWhatsApp = false) => {
+    if (e) e.preventDefault();
     if (!formData.name || !formData.email || !formData.phone || !formData.message) {
       toast.error('Please complete all required fields.');
       return;
     }
 
+    const currentData = { ...formData };
+
     try {
       setLoading(true);
-      const res = await inquiryApi.create(formData);
+      const res = await inquiryApi.create(currentData);
       if (res.success) {
+        setLastInquiry(currentData);
         setSubmitted(true);
         toast.success(res.message || 'Inquiry submitted successfully!');
+
+        if (directWhatsApp) {
+          const waUrl = res.whatsappUrl || getAdminWhatsAppLink(currentData);
+          window.open(waUrl, '_blank', 'noopener,noreferrer');
+        }
+
         setFormData({
           name: '',
           email: '',
@@ -75,13 +100,13 @@ export const Contact = () => {
       <div className="bg-navy-950 text-white py-16 px-4 sm:px-6 relative overflow-hidden text-center">
         <div className="max-w-3xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-300 uppercase tracking-widest bg-brand-500/20 px-3 py-1 rounded-full mb-3 border border-brand-400/30">
-            <Headphones className="w-3.5 h-3.5" /> We Are Here For You
+            <Headphones className="w-3.5 h-3.5" /> Direct Dispatch Hotline Connected
           </div>
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight mb-4">
             Contact & Travel Inquiries
           </h1>
           <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-            Have questions about a holiday package, need a custom cab quote, or want personal recommendations? Talk to our travel experts.
+            Inquiries are linked directly to Admin Ravi (<span className="text-amber-400 font-bold">+91 70180 88530</span>) for instant notification and fast booking confirmation.
           </p>
         </div>
       </div>
@@ -109,8 +134,8 @@ export const Contact = () => {
                 <Phone className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-navy-900">Phone Support (24/7)</h4>
-                <a href={`tel:${settings.phone || '7018088530'}`} className="text-xs text-brand-600 font-semibold mt-1 block">
+                <h4 className="text-sm font-bold text-navy-900">Admin Phone Support (24/7)</h4>
+                <a href={`tel:${settings.phone || '7018088530'}`} className="text-xs text-brand-600 font-bold mt-1 block">
                   {settings.phone || '70180 88530'}
                 </a>
                 {settings.altPhone && (
@@ -118,6 +143,9 @@ export const Contact = () => {
                     {settings.altPhone}
                   </a>
                 )}
+                <span className="inline-block mt-1 text-[10px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-md font-semibold border border-emerald-200">
+                  Instant Dispatch
+                </span>
               </div>
             </div>
 
@@ -140,19 +168,19 @@ export const Contact = () => {
               <div>
                 <h4 className="text-sm font-bold text-navy-900">Office Working Hours</h4>
                 <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                  {settings.businessHours || 'Mon - Sat: 9:00 AM - 8:00 PM'}
+                  {settings.businessHours || 'Mon - Sun: 24/7 Emergency & Taxi Dispatch'}
                 </p>
               </div>
             </div>
 
             {/* WhatsApp CTA */}
             <a
-              href={`https://wa.me/${(settings.whatsapp || '').replace(/[^0-9]/g, '')}`}
+              href={`https://wa.me/${adminRawPhone}?text=${encodeURIComponent('Hi Ravi Tour & Travels, I have an inquiry regarding Himachal tour & taxi service.')}`}
               target="_blank"
               rel="noreferrer"
               className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-colors flex items-center justify-center gap-2 shadow-md"
             >
-              <MessageCircle className="w-4 h-4" /> Chat on WhatsApp Instant
+              <MessageCircle className="w-4 h-4" /> WhatsApp Admin (70180 88530)
             </a>
           </div>
         </div>
@@ -160,24 +188,86 @@ export const Contact = () => {
         {/* Right 2 Cols: Form + Google Maps */}
         <div className="lg:col-span-2 space-y-8">
           <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-soft border border-slate-100">
-            <h2 className="text-2xl font-bold text-navy-900 mb-2">Send Us an Inquiry</h2>
-            <p className="text-xs text-slate-500 mb-8">
-              Leave your details below. Our holiday consultant will reach out via call or WhatsApp within 2 hours.
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+              <h2 className="text-2xl font-bold text-navy-900">Send Us an Inquiry</h2>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-amber-50 text-amber-900 border border-amber-200 shrink-0">
+                <Bell className="w-3.5 h-3.5 text-amber-600" /> Linked to Admin (70180 88530)
+              </span>
+            </div>
+            <p className="text-xs text-slate-500 mb-6">
+              Fill in your trip details below. Your request is linked directly to Dispatch Admin (+91 70180 88530) for swift confirmation.
             </p>
 
             {submitted ? (
-              <div className="p-8 text-center bg-emerald-50 rounded-2xl border border-emerald-200">
-                <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto mb-3" />
-                <h3 className="text-lg font-bold text-emerald-900">Inquiry Received!</h3>
-                <p className="text-xs text-emerald-700 mt-1 mb-6">
-                  Thank you for contacting Ravi Tour & Travels. Our specialist is already preparing your details and will call you shortly.
+              <div className="p-6 sm:p-8 text-center bg-emerald-50/70 rounded-2xl border border-emerald-200">
+                <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-3 shadow-sm">
+                  <CheckCircle2 className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-bold text-navy-900">Inquiry Received & Linked with Admin!</h3>
+                <p className="text-xs text-slate-600 mt-1 max-w-md mx-auto mb-6 leading-relaxed">
+                  Thank you, <strong>{lastInquiry?.name || 'Traveler'}</strong>! Your inquiry is logged in our portal. You can now notify Admin Ravi directly on WhatsApp for an immediate response.
                 </p>
+
+                {/* Direct Admin Notification Box */}
+                <div className="bg-white rounded-2xl p-5 border border-emerald-200/80 shadow-sm max-w-md mx-auto mb-6 text-left">
+                  <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-navy-900">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                      Admin Dispatch Notification
+                    </span>
+                    <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                      Hotline: 70180 88530
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-slate-600 mb-4">
+                    Send inquiry details directly to <strong>Admin Ravi (+91 70180 88530)</strong> on WhatsApp:
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row gap-2.5">
+                    <a
+                      href={lastInquiry ? getAdminWhatsAppLink(lastInquiry) : `https://wa.me/${adminRawPhone}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md transition-all"
+                    >
+                      <MessageCircle className="w-4 h-4" /> Notify Admin on WhatsApp
+                    </a>
+
+                    <a
+                      href={`tel:${adminRawPhone}`}
+                      className="inline-flex items-center justify-center gap-1.5 py-3 px-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-bold shadow-md transition-all shrink-0"
+                    >
+                      <PhoneCall className="w-4 h-4" /> Call Admin
+                    </a>
+                  </div>
+                </div>
+
                 <Button variant="outline" size="sm" onClick={() => setSubmitted(false)}>
-                  Send Another Message
+                  Send Another Inquiry
                 </Button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={(e) => handleSubmit(e, false)} className="space-y-6">
+                {/* Admin notification live badge banner */}
+                <div className="p-3.5 rounded-2xl bg-amber-50/80 border border-amber-200 flex items-center justify-between gap-3 text-xs">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center shrink-0 shadow-xs">
+                      <PhoneCall className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-navy-900">Direct Admin Hotline Linked</p>
+                      <p className="text-[11px] text-amber-900">Submitting here notifies Admin Ravi on <strong>+91 70180 88530</strong></p>
+                    </div>
+                  </div>
+                  <a
+                    href={`tel:${adminRawPhone}`}
+                    className="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-[11px] shrink-0 transition-colors"
+                  >
+                    Call 70180 88530
+                  </a>
+                </div>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <label className="text-xs font-bold text-slate-700 block mb-1">Your Full Name *</label>
@@ -244,15 +334,26 @@ export const Contact = () => {
                   />
                 </div>
 
-                <Button
-                  type="submit"
-                  variant="primary"
-                  size="lg"
-                  loading={loading}
-                  className="w-full sm:w-auto px-8 py-3 font-bold text-sm shadow-md"
-                >
-                  <Send className="w-4 h-4 mr-2" /> Submit Inquiry
-                </Button>
+                <div className="flex flex-col sm:flex-row gap-3 pt-1">
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    size="lg"
+                    loading={loading}
+                    className="w-full sm:flex-1 py-3 font-bold text-xs shadow-md"
+                  >
+                    <Send className="w-4 h-4 mr-2" /> Submit Inquiry
+                  </Button>
+
+                  <button
+                    type="button"
+                    disabled={loading}
+                    onClick={(e) => handleSubmit(e, true)}
+                    className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition-all"
+                  >
+                    <MessageCircle className="w-4 h-4" /> Submit & Notify Admin on WhatsApp
+                  </button>
+                </div>
               </form>
             )}
           </div>
