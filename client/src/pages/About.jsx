@@ -2,15 +2,9 @@ import React from 'react';
 import { useWebsite } from '../context/WebsiteContext';
 import {
   Compass,
-  Award,
-  Users2,
-  ShieldCheck,
   Target,
-  Eye,
-  HeartHandshake,
-  CheckCircle2
+  Eye
 } from 'lucide-react';
-import Button from '../components/common/Button';
 import { useNavigate } from 'react-router-dom';
 
 export const About = () => {
@@ -22,27 +16,6 @@ export const About = () => {
     { year: '2017', title: 'Pan-India Expansion', desc: 'Launched full tour operations in Kashmir, Goa, Rajasthan, and Kerala.' },
     { year: '2021', title: '5000+ Travelers Milestone', desc: 'Recognized as leading Himachal & North India holiday specialists.' },
     { year: '2026', title: 'Modern SaaS Travel Platform', desc: '100% digital booking, 24/7 live concierge, and verified stays.' }
-  ];
-
-  const team = [
-    {
-      name: 'Ravi',
-      role: 'Founder & Managing Director',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80',
-      bio: 'Over 12 years dedicated to safe mountain travel, Himachal sightseeing, and exceptional taxi services in Kangra.'
-    },
-    {
-      name: 'Meenakshi Verma',
-      role: 'Head of Customer Experience',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80',
-      bio: 'Passionate about seamless guest hospitality, 24/7 on-road safety, and family comfort.'
-    },
-    {
-      name: 'Vikram Rajput',
-      role: 'Senior Fleet & Logistics Coordinator',
-      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80',
-      bio: 'Expert in Himachal mountain cab routes, Dharamshala, Manali, Dalhousie, and high-altitude logistics.'
-    }
   ];
 
   return (
@@ -160,35 +133,6 @@ export const About = () => {
                 <span className="text-2xl font-black text-brand-600 mb-2 block">{m.year}</span>
                 <h4 className="text-base font-bold text-navy-900 mb-1">{m.title}</h4>
                 <p className="text-xs text-slate-500 leading-relaxed">{m.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Team Section */}
-        <div>
-          <div className="text-center max-w-xl mx-auto mb-12">
-            <span className="text-xs font-bold text-brand-600 uppercase tracking-widest bg-brand-50 px-3 py-1 rounded-full mb-3 inline-block">
-              Passionate Wanderers
-            </span>
-            <h2 className="text-3xl font-extrabold text-navy-900">Meet Our Leadership Team</h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-            {team.map((member, idx) => (
-              <div key={idx} className="bg-white rounded-2xl p-6 shadow-soft border border-slate-100 text-center flex flex-col items-center">
-                <img
-                  src={member.image || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'}
-                  alt={member.name}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80';
-                  }}
-                  className="w-24 h-24 rounded-full object-cover border-4 border-brand-50 shadow-md mb-4"
-                />
-                <h3 className="text-lg font-bold text-navy-900">{member.name}</h3>
-                <p className="text-xs font-semibold text-brand-600 mb-3">{member.role}</p>
-                <p className="text-xs text-slate-500 leading-relaxed">{member.bio}</p>
               </div>
             ))}
           </div>

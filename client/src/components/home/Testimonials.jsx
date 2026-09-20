@@ -224,47 +224,65 @@ export const Testimonials = () => {
           </div>
         </div>
 
-        {/* Filter Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar">
-          {[
-            'All',
-            '5 Stars',
-            'Dharamshala & Kangra',
-            'Manali & Rohtang',
-            'Temple Yatras',
-            'Dalhousie'
-          ].map((filter) => (
-            <button
-              key={filter}
-              onClick={() => setActiveFilter(filter)}
-              className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
-                activeFilter === filter
-                  ? 'bg-navy-900 text-white shadow-sm'
-                  : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
-              }`}
-            >
-              {filter}
-            </button>
-          ))}
-        </div>
+        {/* Filter Pills - only shown when reviews exist */}
+        {testimonials.length > 0 && (
+          <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar">
+            {[
+              'All',
+              '5 Stars',
+              'Dharamshala & Kangra',
+              'Manali & Rohtang',
+              'Temple Yatras',
+              'Dalhousie'
+            ].map((filter) => (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+                  activeFilter === filter
+                    ? 'bg-navy-900 text-white shadow-sm'
+                    : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Reviews Grid */}
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
+            {[1, 2, 3].map((i) => (
               <CardSkeleton key={i} />
             ))}
           </div>
         ) : filteredTestimonials.length === 0 ? (
           <div className="bg-white rounded-3xl p-12 text-center border border-slate-200 shadow-soft max-w-xl mx-auto space-y-4">
-            <MessageSquareHeart className="w-12 h-12 text-slate-300 mx-auto" />
-            <h3 className="text-lg font-bold text-navy-900">No reviews found in this category</h3>
-            <p className="text-xs text-slate-500">
-              Be the first to share your journey experience for this route!
+            <div className="w-16 h-16 rounded-2xl bg-brand-50 text-brand-600 mx-auto flex items-center justify-center">
+              <MessageSquareHeart className="w-8 h-8" />
+            </div>
+            <h3 className="text-xl font-bold text-navy-900">
+              {testimonials.length === 0 ? 'Be the First to Review!' : 'No reviews match this filter'}
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-500 max-w-md mx-auto leading-relaxed">
+              {testimonials.length === 0
+                ? 'Have you journeyed with Ravi Tour & Travels? Share your genuine travel story, photos, and ratings to inspire fellow wanderers.'
+                : 'Try selecting "All" or a different route filter to see more traveler stories.'}
             </p>
-            <Button variant="primary" onClick={() => setIsModalOpen(true)}>
-              <Plus className="w-4 h-4 mr-1.5" /> Write a Review
-            </Button>
+            <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
+              <Button variant="primary" onClick={() => setIsModalOpen(true)}>
+                <Plus className="w-4 h-4 mr-1.5" /> Share Your Review
+              </Button>
+              {testimonials.length > 0 && activeFilter !== 'All' && (
+                <button
+                  onClick={() => setActiveFilter('All')}
+                  className="px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors"
+                >
+                  View All Reviews
+                </button>
+              )}
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

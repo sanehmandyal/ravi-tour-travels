@@ -33,18 +33,26 @@ import {
 } from 'recharts';
 import Loader from '../../components/common/Loader';
 import Badge from '../../components/common/Badge';
+import { testimonialApi } from '../../services/testimonialApi';
 
 export const Dashboard = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [reviewsCount, setReviewsCount] = useState(0);
   const navigate = useNavigate();
 
   const fetchDashboard = async () => {
     try {
-      const res = await adminApi.getDashboard();
+      const [res, revRes] = await Promise.all([
+        adminApi.getDashboard().catch(() => null),
+        testimonialApi.getAll({ status: '' }).catch(() => null)
+      ]);
       if (res && res.success && res.data) {
         setData(res.data);
+      }
+      if (revRes && revRes.success && Array.isArray(revRes.data)) {
+        setReviewsCount(revRes.data.length);
       }
     } catch (err) {
       console.warn('Backend live metrics unavailable, applying operational data:', err);
@@ -322,8 +330,8 @@ export const Dashboard = () => {
           </div>
           <div>
             <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Traveler Reviews</p>
-            <h3 className="text-2xl font-black text-navy-900">46</h3>
-            <p className="text-[10px] text-amber-600 font-semibold mt-1">100% Google verified</p>
+            <h3 className="text-2xl font-black text-navy-900">{reviewsCount}</h3>
+            <p className="text-[10px] text-amber-600 font-semibold mt-1">Live Original Reviews</p>
           </div>
         </div>
 

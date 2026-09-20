@@ -655,47 +655,11 @@ const seedDB = async () => {
     console.log('[Seed] Seeded Sample Bookings');
 
     // 5. Testimonials
-    const testimonialsData = [
-      {
-        customerName: 'Vikram & Sneha Kapur',
-        profileImage: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
-        destination: 'Manali',
-        packageTitle: 'Manali Escape – Himalayan Retreat',
-        rating: 5,
-        review: 'Ravi Tour & Travels made our anniversary in Manali truly extraordinary! The cab driver was polite and knew all the scenic spots without crowds. The resort they arranged had the most stunning view of the snow-clad peaks.',
-        status: 'approved'
-      },
-      {
-        customerName: 'Kunal Singhania',
-        profileImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
-        destination: 'Kashmir',
-        packageTitle: 'Kashmir Paradise Tour',
-        rating: 5,
-        review: 'Our family trip to Srinagar and Gulmarg was flawless. The houseboat in Dal Lake was like stepping back in royal history. 24/7 helpline support from the team gave us complete peace of mind!',
-        status: 'approved'
-      },
-      {
-        customerName: 'Deepika Iyer',
-        profileImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80',
-        destination: 'Kerala',
-        packageTitle: 'Kerala Backwaters & Munnar Hills',
-        rating: 5,
-        review: 'From airport pickup in Cochin to the private houseboat in Alleppey, every single detail was coordinated seamlessly. The food on the houseboat was out of this world. Highly recommend Ravi Tour & Travels!',
-        status: 'approved'
-      },
-      {
-        customerName: 'Harpreet Singh',
-        profileImage: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
-        destination: 'Ladakh',
-        packageTitle: 'Ladakh High Passes Expedition',
-        rating: 5,
-        review: 'Driving through Khardung La and camping near Pangong Lake was a lifelong dream. The vehicle was in top notch condition and our driver carried emergency medical oxygen which proved very useful. 10/10!',
-        status: 'approved'
-      }
-    ];
-
-    await Testimonial.insertMany(testimonialsData);
-    console.log('[Seed] Seeded Testimonials');
+    // Kept empty so only genuine customer reviews submitted by travelers are stored
+    const testimonialsData = [];
+    if (testimonialsData.length > 0) {
+      await Testimonial.insertMany(testimonialsData);
+    }
 
     // 6. Blog Articles
     const blogsData = [
